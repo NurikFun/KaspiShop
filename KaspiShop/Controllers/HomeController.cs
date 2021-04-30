@@ -1,7 +1,7 @@
-﻿using AW.Domain.Interfaces;
+﻿using AW.Domain.Core;
+using AW.Domain.Interfaces;
 using AW.Infrastructure.Data;
 using AW.Infrastructure.Data.Repository;
-using AW.Infrastructure.Data.Repository.ModelRepository;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -12,16 +12,13 @@ namespace KaspiShop.Controllers
 {
     public class HomeController : Controller
     {
-        private readonly IRepository<ProductRepository> productRepository;
-        private readonly IRepository<ProductProductPhotoRepository> productProductPhotoRepository;
-        private readonly IRepository<ProductPhotoRepository> productPhotoRepository;
 
-        public HomeController(IRepository<ProductRepository> productRepository, IRepository<ProductProductPhotoRepository> productProductPhotoRepository,
-            IRepository<ProductPhotoRepository> productPhotoRepository)
+        private readonly IRepository<ProductPhoto> productPhotoRepository;
+
+
+        public HomeController(IRepository<ProductPhoto> productPhotoRepository)
         {
-            this.productRepository = productRepository;
             this.productPhotoRepository = productPhotoRepository;
-            this.productProductPhotoRepository = productProductPhotoRepository;
         }
 
         public ActionResult Index()
@@ -45,11 +42,8 @@ namespace KaspiShop.Controllers
 
 
         public ActionResult ProductList()
-        {
-           // ProductPhotoRepository photoRepository = new ProductPhotoRepository(new AWContext());
-       
+        {       
             var items = productPhotoRepository.GetList();
-           // var items = photoRepository.GetList();
             return View(items);
         }
 

@@ -1,4 +1,5 @@
-﻿using AW.Domain.Interfaces;
+﻿using AW.Domain.Core;
+using AW.Domain.Interfaces;
 using AW.Infrastructure.Data.Repository;
 using Ninject;
 using System;
@@ -27,7 +28,7 @@ namespace KaspiShop.Util
         }
         private void AddBindings()
         {
-            kernel.Bind(typeof(IRepository<>)).To(typeof(Repository<>));
+            kernel.Bind<IRepository<ProductPhoto>>().To<Repository<ProductPhoto>>();
         }
     }
 }

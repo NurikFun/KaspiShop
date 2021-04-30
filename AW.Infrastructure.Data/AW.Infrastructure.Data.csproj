@@ -52,10 +52,6 @@
   <ItemGroup>
     <Compile Include="Context\AWContext.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Repository\ModelRepository\AddressRepository.cs" />
-    <Compile Include="Repository\ModelRepository\ProductPhotoRepository.cs" />
-    <Compile Include="Repository\ModelRepository\ProductProductPhotoRepository.cs" />
-    <Compile Include="Repository\ModelRepository\ProductRepository.cs" />
     <Compile Include="Repository\Repository.cs" />
   </ItemGroup>
   <ItemGroup />
