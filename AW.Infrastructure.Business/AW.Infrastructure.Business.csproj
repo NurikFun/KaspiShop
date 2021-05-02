@@ -45,6 +45,10 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\AW.Domain.Core\AW.Domain.Core.csproj">
+      <Project>{6edd1682-d096-403b-b3cc-b2e5128e695c}</Project>
+      <Name>AW.Domain.Core</Name>
+    </ProjectReference>
     <ProjectReference Include="..\AW.Services.Interfaces\AW.Services.Interfaces.csproj">
       <Project>{c1b2268c-5173-4e09-b644-b44742c52429}</Project>
       <Name>AW.Services.Interfaces</Name>

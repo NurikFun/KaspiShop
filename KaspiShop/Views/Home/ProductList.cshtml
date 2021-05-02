@@ -4,41 +4,38 @@
     ViewBag.Title = "ProductList";
 }
 
-<h2>ProductList</h2>
+    <h2>ProductList</h2>
 
-<p>
-    @Html.ActionLink("Create New", "Create")
-</p>
-<table class="table">
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.ThumbNailPhoto)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.ThumbnailPhotoFileName)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.LargePhoto)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.LargePhotoFileName)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.ModifiedDate)
-        </th>
-        <th></th>
-    </tr>
+    <table class="table">
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.ThumbNailPhoto)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ThumbnailPhotoFileName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.LargePhoto)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.LargePhotoFileName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ModifiedDate)
+            </th>
+            <th></th>
+        </tr>
 
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @{ 
-                var base64 = Convert.ToBase64String(item.ThumbNailPhoto);
-                var imgsrc = string.Format("data:images/gif;base64,{0}", base64);
-            }
-            <img src='@imgsrc' style="max-width:100px; max-height:100px;" />
-        </td>
-    </tr>
-}
+    @foreach (var item in Model) {
+        <tr>
+            <td>
+                @{
+                    var base64 = Convert.ToBase64String(item.ThumbNailPhoto);
+                    var imgsrc = string.Format("data:images/gif;base64,{0}", base64);
+                }
+                <img src='@imgsrc' style="max-width:100px; max-height:100px;" />
+            </td>
+        </tr>
+    }
 
-</table>
+    </table>

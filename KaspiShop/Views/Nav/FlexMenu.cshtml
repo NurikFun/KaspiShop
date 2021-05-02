@@ -1,0 +1,43 @@
+﻿@model IEnumerable<AW.Domain.Core.ProductCategory>
+
+@{ bool horizontal = ((bool)(ViewContext.RouteData.Values["horizontalLayout"] ?? false));
+    string wrapperClasses = horizontal ? "btn-group btn-group-sm btn-group-justified" : null; }
+
+
+<div class="@wrapperClasses">
+    <div class="panel-group">
+        <div class="panel panel-default">
+
+            @Html.ActionLink("Home", "List", "Product",
+                                                              new
+                                                              {
+                                                                  @class = horizontal ? "btn btn-default btn-sm" : "btn btn-block btn-default btn-lg"
+                                                              })
+
+            @foreach (var link in Model)
+            {
+                <div class="panel-heading">
+                    <h4 class="panel-title">
+                        <a data-toggle="collapse" href="#@link.Name">@link.Name</a>
+                    </h4>
+                </div>
+                <div id="@link.Name" class="panel-collapse collapse">
+                    @foreach (var subcategory in link.ProductSubcategories)
+                    {
+                        <div class="panel-body">
+                            @Html.RouteLink(subcategory.Name, new
+                            {
+                                controller = "Product",
+                                action = "List",
+                                category = link.Name,
+                                subcategory = subcategory.Name,
+                                page = 1
+                            })
+                        </div>
+                     }
+                </div>
+             }
+        </div>
+
+    </div>
+</div>

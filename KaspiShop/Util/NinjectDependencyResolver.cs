@@ -28,7 +28,7 @@ namespace KaspiShop.Util
         }
         private void AddBindings()
         {
-            kernel.Bind<IRepository<ProductPhoto>>().To<Repository<ProductPhoto>>();
+            kernel.Bind(typeof(IRepository<>)).To(typeof(Repository<>));
         }
     }
 }
