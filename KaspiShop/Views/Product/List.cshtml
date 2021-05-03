@@ -1,0 +1,16 @@
+﻿@model KaspiShop.Models.ProductsListView
+@using KaspiShop.HtmlHelpers
+
+@{ ViewBag.Title = "Products"; }
+
+    @foreach (var p in Model.ProductCatalog)
+    {
+        @Html.Partial("ProductSummary", p)
+    }
+
+
+<div class="btn-group pull-right">
+    @Html.PageLinks(Model.PagingInfo, x => Url.Action("List",
+                new { page = x, category = Model.CurrentCategory, subcategory = Model.SubCategory }))
+    
+</div>

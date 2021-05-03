@@ -8,12 +8,6 @@
     <div class="panel-group">
         <div class="panel panel-default">
 
-            @Html.ActionLink("Home", "List", "Product",
-                                                              new
-                                                              {
-                                                                  @class = horizontal ? "btn btn-default btn-sm" : "btn btn-block btn-default btn-lg"
-                                                              })
-
             @foreach (var link in Model)
             {
                 <div class="panel-heading">
