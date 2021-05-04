@@ -1,3 +1,5 @@
+using AW.Infrastructure.Business;
+using KaspiShop.Util;
 using System.Web.Mvc;
 using System.Web.Optimization;
 using System.Web.Routing;
@@ -12,6 +14,8 @@ namespace KaspiShop
             FilterConfig.RegisterGlobalFilters(GlobalFilters.Filters);
             RouteConfig.RegisterRoutes(RouteTable.Routes);
             BundleConfig.RegisterBundles(BundleTable.Bundles);
+
+            ModelBinders.Binders.Add(typeof(ShopCartItem), new ShopCartItemBinder());
 
         }
     }

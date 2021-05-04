@@ -69,6 +69,31 @@ namespace KaspiShop.Controllers
 
             return View(productsList);
         }
+        /*
+        public FileContentResult GetImage(int productID)
+        {
+            var prodPhoto = productPhotoRepo.GetList().Where(p => p.ProductID == productID);
+            var photo = (
+                        from p in prodPhoto
+                        join l in photoRepo.GetList() on p.ProductPhotoID equals l.ProductPhotoID
+                        select new 
+                        {
+                            Data = l.ThumbNailPhoto,
+                            Type = l.ThumbnailPhotoFileName
+                        }
+                ).ToList();
+
+
+            if (photo != null)
+            {
+                return File(photo, prod.ImageMimeType);
+            }
+            else
+            {
+                return null;
+            }
+        }
+        */
         private IEnumerable<ProductCatalog> ProductItems()
         {
             var check = productRepo.GetList();
@@ -98,7 +123,6 @@ namespace KaspiShop.Controllers
                                         Photo = prph.ThumbNailPhoto,
                                         SubCategory = prsc.Name,
                                         Price = p.ListPrice
-                                      
                                     }
                 );
             return productCatalog;

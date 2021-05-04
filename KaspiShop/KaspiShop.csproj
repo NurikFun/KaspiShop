@@ -202,6 +202,7 @@
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Controllers\NavController.cs" />
     <Compile Include="Controllers\ProductController.cs" />
+    <Compile Include="Controllers\ShopCartController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -212,9 +213,11 @@
     <Compile Include="Models\PagingInfo.cs" />
     <Compile Include="Models\ProductCatalog.cs" />
     <Compile Include="Models\ProductsListView.cs" />
+    <Compile Include="Models\ShopCartItemViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
     <Compile Include="Util\NinjectDependencyResolver.cs" />
+    <Compile Include="Util\ShopCartItemBinder.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\bootstrap-theme.css" />
@@ -368,6 +371,7 @@
     <Content Include="Scripts\popper-utils.js.map" />
     <Content Include="Views\Product\List.cshtml" />
     <Content Include="Views\Shared\ProductSummary.cshtml" />
+    <Content Include="Views\ShopCart\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -385,6 +389,10 @@
     <ProjectReference Include="..\AW.Domain.Interfaces\AW.Domain.Interfaces.csproj">
       <Project>{2398b805-4901-4cef-8e5d-0bb743bbff5b}</Project>
       <Name>AW.Domain.Interfaces</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\AW.Infrastructure.Business\AW.Infrastructure.Business.csproj">
+      <Project>{0d8b7d4b-c62e-455f-b721-ffb50b110307}</Project>
+      <Name>AW.Infrastructure.Business</Name>
     </ProjectReference>
     <ProjectReference Include="..\AW.Infrastructure.Data\AW.Infrastructure.Data.csproj">
       <Project>{403616be-9fce-47af-ade5-2ef3da901fc7}</Project>

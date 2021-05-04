@@ -4,28 +4,31 @@
 
     @if (Model.Photo != null)
     {
-    <div class="pull-left" style="margin-right: 10px">
-        @{ var base64 = Convert.ToBase64String(Model.Photo);
-                            var imgsrc = string.Format("data:images/gif;base64,{0}", base64); }
-        <img class="img-thumbnail" width="75" height="75"
-             src='@imgsrc' />
-    </div>
-    }
-    
+<div class="pull-left" style="margin-right: 10px">
+    @{ var base64 = Convert.ToBase64String(Model.Photo);
+        var imgsrc = string.Format("data:images/gif;base64,{0}", base64); }
+    <img class="img-thumbnail" width="75" height="75"
+         src='@imgsrc' />
+</div>}
+
     <h3>
-        <strong>@Model.Name</strong>
+        <strong>@Model.Name.</strong>
+        <strong>Quantity : @Model.Quantity</strong>
         <span class="pull-right label label-primary">@Model.Price$</span>
     </h3>
-    
-            @using (Html.BeginForm("AddToCart", "Cart"))
-            {
-        <div class="pull-right">
-            @Html.HiddenFor(x => x.ID)
-            @Html.Hidden("returnUrl", Request.Url.PathAndQuery)
-            <input type="submit" class="btn btn-success" value="Add to cart" />
-        </div>
-        }
-    
-    <span class="lead"> @Model.Description</span>
+
+    @using (Html.BeginForm("AddToCart", "ShopCart"))
+    {
+<div class="pull-right">
+    @Html.Hidden("productId", Model.ID)
+    @Html.Hidden("locationName", Model.Location)
+    @Html.Hidden("returnUrl", Request.Url.PathAndQuery)
+    <input type="submit" class="btn btn-success" value="Add to cart" />
+</div>}
+
+    <span class="lead"> @Model.Description</span><br />
+    <h4>
+        <strong>Location : @Model.Location</strong>
+    </h4>
 </div>
 
