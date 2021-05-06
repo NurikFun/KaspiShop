@@ -1,15 +1,13 @@
-﻿@model KaspiShop.Models.ProductCatalog
+﻿@model AW.Domain.Core.ProductCatalog
 
 <div class="well">
 
-    @if (Model.Photo != null)
-    {
-<div class="pull-left" style="margin-right: 10px">
-    @{ var base64 = Convert.ToBase64String(Model.Photo);
-        var imgsrc = string.Format("data:images/gif;base64,{0}", base64); }
-    <img class="img-thumbnail" width="75" height="75"
-         src='@imgsrc' />
-</div>}
+     <div class="pull-left" style="margin-right: 10px">
+        <img class="img-thumbnail" width="75" height="75"
+             src="@Url.Action("GetImage", "Product",
+                    new { Model.PhotoID })" />
+     </div>
+    
 
     <h3>
         <strong>@Model.Name.</strong>

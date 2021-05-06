@@ -39,5 +39,24 @@ namespace KaspiShop.Controllers
 
             return RedirectToAction("Index", new { returnUrl });
         }
+
+        public RedirectToRouteResult RemoveFromCart(ShopCartItem cart, int productId, string locationName, string returnUrl)
+        {
+            Product product = productRepo.GetList()
+                .FirstOrDefault(p => p.ProductID == productId);
+
+            if (product != null)
+            {
+                cart.RemoveLine(product, locationName);
+            }
+            return RedirectToAction("Index", new { returnUrl });
+        }
+
+        public PartialViewResult Summary(ShopCartItem cart)
+        {
+            return PartialView(cart);
+        }
+
+
     }
 }

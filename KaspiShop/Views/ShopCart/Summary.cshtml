@@ -1,0 +1,15 @@
+﻿@model AW.Infrastructure.Business.ShopCartItem
+
+<div class="navbar-right hidden-xs">
+    @Html.ActionLink("Check out", "Index", "ShopCart",
+        new { returnUrl = Request.Url.PathAndQuery },
+        new { @class = "btn btn-default navbar-btn" }
+        )
+</div>
+
+<div class="navbar-text navbar-right">
+    <b class="hidden-xs">You have :</b>
+    @Model.Lines.Sum(x => x.Quantity) item(s),
+    @Model.ComputeTotalValue()$
+</div>
+

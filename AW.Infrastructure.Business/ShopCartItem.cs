@@ -32,9 +32,9 @@ namespace AW.Infrastructure.Business
             }
         }
 
-        public void RemoveLine(Product product)
+        public void RemoveLine(Product product, string locationName)
         {
-            lineCollection.RemoveAll(l => l.Product.ProductID == product.ProductID);
+            lineCollection.RemoveAll(l => l.Product.ProductID == product.ProductID && l.LocationName == locationName);
         }
 
         public decimal ComputeTotalValue()

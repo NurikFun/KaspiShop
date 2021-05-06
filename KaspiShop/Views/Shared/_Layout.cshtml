@@ -20,12 +20,8 @@
 </head>
 <body>
     <div class="navbar navbar-inverse">
-        <a class="navbar-brand" href="#">
-            <span class="hidden-xs">Kaspi shop</span>
-
-            <span>@Html.Partial("_LoginPartial")</span>
-        </a>
-        @*@Html.Action("Summary", "Cart")*@
+        @Html.Partial("_LoginPartial")
+        @Html.Action("Summary", "ShopCart")
     </div>
 
     <div class="visible-xs">
