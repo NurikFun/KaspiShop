@@ -24,7 +24,7 @@ namespace AW.Domain.Core
 
         public int EmployeeID { get; set; }
 
-        public int VendorID { get; set; }
+        public int? VendorID { get; set; }
 
         public int ShipMethodID { get; set; }
 

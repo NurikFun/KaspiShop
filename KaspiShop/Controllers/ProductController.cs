@@ -21,7 +21,7 @@ namespace KaspiShop.Controllers
             this.photoRepository = photoRepository;
         }
 
-        public ActionResult List(string category, string subcategory, int page = 1)
+        public ActionResult List(string category = "Clothing", string subcategory = "Caps", int page = 1)
         {
 
             ProductsListView productsList = new ProductsListView

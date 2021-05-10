@@ -377,6 +377,7 @@
     <Content Include="Views\Shared\ProductSummary.cshtml" />
     <Content Include="Views\ShopCart\Index.cshtml" />
     <Content Include="Views\ShopCart\Summary.cshtml" />
+    <Content Include="Views\ShopCart\Checkout.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -402,6 +403,10 @@
     <ProjectReference Include="..\AW.Infrastructure.Data\AW.Infrastructure.Data.csproj">
       <Project>{403616be-9fce-47af-ade5-2ef3da901fc7}</Project>
       <Name>AW.Infrastructure.Data</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\AW.Services.Interfaces\AW.Services.Interfaces.csproj">
+      <Project>{c1b2268c-5173-4e09-b644-b44742c52429}</Project>
+      <Name>AW.Services.Interfaces</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>

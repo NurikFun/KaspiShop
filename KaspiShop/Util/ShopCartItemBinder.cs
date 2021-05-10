@@ -1,4 +1,4 @@
-﻿using AW.Infrastructure.Business;
+﻿using AW.Domain.Core;
 using System.Web.Mvc;
 
 namespace KaspiShop.Util

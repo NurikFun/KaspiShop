@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace AW.Infrastructure.Business
+namespace AW.Domain.Core
 {
     public class ShopCartItem
     {

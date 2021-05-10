@@ -1,7 +1,9 @@
 ﻿using AW.Domain.Core;
 using AW.Domain.Interfaces;
+using AW.Infrastructure.Business;
 using AW.Infrastructure.Data.CustomRepository;
 using AW.Infrastructure.Data.Repository;
+using AW.Services.Interfaces;
 using Ninject;
 using System;
 using System.Collections.Generic;
@@ -31,6 +33,7 @@ namespace KaspiShop.Util
         {
             kernel.Bind(typeof(IRepository<>)).To(typeof(Repository<>));
             kernel.Bind<IProductCatalogRepository>().To<ProductCatalogRepository>();
+            kernel.Bind<IOrderProcessor>().To<OrderProcessor>();
         }
     }
 }

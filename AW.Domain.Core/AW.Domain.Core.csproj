@@ -51,6 +51,8 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="CustomDTO\ProductCatalog.cs" />
+    <Compile Include="CustomDTO\ShopCartItem.cs" />
+    <Compile Include="CustomDTO\ShoppingDetails.cs" />
     <Compile Include="Entities\Address.cs" />
     <Compile Include="Entities\AddressType.cs" />
     <Compile Include="Entities\BillOfMaterial.cs" />
