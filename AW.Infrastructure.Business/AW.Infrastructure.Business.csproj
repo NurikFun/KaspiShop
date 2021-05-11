@@ -31,7 +31,14 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
@@ -50,10 +57,18 @@
       <Project>{6edd1682-d096-403b-b3cc-b2e5128e695c}</Project>
       <Name>AW.Domain.Core</Name>
     </ProjectReference>
+    <ProjectReference Include="..\AW.Infrastructure.Data\AW.Infrastructure.Data.csproj">
+      <Project>{403616be-9fce-47af-ade5-2ef3da901fc7}</Project>
+      <Name>AW.Infrastructure.Data</Name>
+    </ProjectReference>
     <ProjectReference Include="..\AW.Services.Interfaces\AW.Services.Interfaces.csproj">
       <Project>{c1b2268c-5173-4e09-b644-b44742c52429}</Project>
       <Name>AW.Services.Interfaces</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
+    <None Include="packages.config" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
