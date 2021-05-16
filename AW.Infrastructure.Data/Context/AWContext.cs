@@ -8,6 +8,7 @@ namespace AW.Infrastructure.Data
         public AWContext()
             : base("name=AWContext")
         {
+
         }
 
         public virtual DbSet<Department> Department { get; set; }
@@ -754,6 +755,7 @@ namespace AW.Infrastructure.Data
                 .HasMany(e => e.Customers)
                 .WithOptional(e => e.Store)
                 .HasForeignKey(e => e.StoreID);
+
         }
     }
 }

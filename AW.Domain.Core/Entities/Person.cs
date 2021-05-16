@@ -59,7 +59,6 @@ namespace AW.Domain.Core
         public DateTime ModifiedDate { get; set; }
 
         public virtual Employee Employee { get; set; }
-
         public virtual BusinessEntity BusinessEntity { get; set; }
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

@@ -42,7 +42,7 @@ namespace AW.Domain.Core
         public Guid rowguid { get; set; }
 
         public DateTime ModifiedDate { get; set; }
-
+        [Required]
         public virtual Employee Employee { get; set; }
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

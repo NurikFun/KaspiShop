@@ -27,7 +27,6 @@ namespace AW.Domain.Core
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<BusinessEntityContact> BusinessEntityContacts { get; set; }
-
         public virtual Person Person { get; set; }
 
         public virtual Store Store { get; set; }

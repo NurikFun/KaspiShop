@@ -24,7 +24,7 @@ namespace AW.Domain.Core
         public Guid rowguid { get; set; }
 
         public DateTime ModifiedDate { get; set; }
-
+        [Required]
         public virtual Person Person { get; set; }
     }
 }

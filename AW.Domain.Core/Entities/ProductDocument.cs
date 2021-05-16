@@ -14,7 +14,7 @@ namespace AW.Domain.Core
         public int ProductID { get; set; }
 
         public DateTime ModifiedDate { get; set; }
-
+        [Required]
         public virtual Product Product { get; set; }
     }
 }

@@ -9,6 +9,9 @@ using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin.Security;
 using KaspiShop.Models;
+using AW.Domain.Interfaces;
+using AW.Domain.Core;
+using AW.Infrastructure.Data;
 
 namespace KaspiShop.Controllers
 {
@@ -17,15 +20,16 @@ namespace KaspiShop.Controllers
     {
         private ApplicationSignInManager _signInManager;
         private ApplicationUserManager _userManager;
-
+        private readonly IRepository<Person> personRepo;
         public AccountController()
         {
         }
 
-        public AccountController(ApplicationUserManager userManager, ApplicationSignInManager signInManager )
+        public AccountController(ApplicationUserManager userManager, ApplicationSignInManager signInManager, IRepository<Person> personRepo)
         {
             UserManager = userManager;
             SignInManager = signInManager;
+            this.personRepo = personRepo;
         }
 
         public ApplicationSignInManager SignInManager
@@ -34,9 +38,9 @@ namespace KaspiShop.Controllers
             {
                 return _signInManager ?? HttpContext.GetOwinContext().Get<ApplicationSignInManager>();
             }
-            private set 
-            { 
-                _signInManager = value; 
+            private set
+            {
+                _signInManager = value;
             }
         }
 
@@ -120,7 +124,7 @@ namespace KaspiShop.Controllers
             // If a user enters incorrect codes for a specified amount of time then the user account 
             // will be locked out for a specified amount of time. 
             // You can configure the account lockout settings in IdentityConfig
-            var result = await SignInManager.TwoFactorSignInAsync(model.Provider, model.Code, isPersistent:  model.RememberMe, rememberBrowser: model.RememberBrowser);
+            var result = await SignInManager.TwoFactorSignInAsync(model.Provider, model.Code, isPersistent: model.RememberMe, rememberBrowser: model.RememberBrowser);
             switch (result)
             {
                 case SignInStatus.Success:
@@ -139,6 +143,26 @@ namespace KaspiShop.Controllers
         [AllowAnonymous]
         public ActionResult Register()
         {
+            using (var context = new AWContext())
+            {
+                BusinessEntity bs = new BusinessEntity();
+                bs.ModifiedDate = DateTime.Now;
+                bs.rowguid = Guid.NewGuid();
+                context.BusinessEntity.Add(bs);
+                context.SaveChanges();
+                Person person = new Person
+                {
+                    BusinessEntityID = bs.BusinessEntityID,
+                    PersonType = "IN",
+                    FirstName = "Awd",
+                    LastName = "FRGHD",
+                    ModifiedDate = DateTime.Now,
+                    rowguid = Guid.NewGuid()
+                };
+                context.Database.CommandTimeout = 600;
+                context.Person.Add(person);
+                context.SaveChanges();
+            }
             return View();
         }
 
@@ -149,14 +173,58 @@ namespace KaspiShop.Controllers
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> Register(RegisterViewModel model)
         {
+
             if (ModelState.IsValid)
             {
-                var user = new ApplicationUser { UserName = model.Email, Email = model.Email };
-                var result = await UserManager.CreateAsync(user, model.Password);
+                var result = new IdentityResult();
+                var user = new ApplicationUser();
+                using (var test = new AWContext())
+                {
+                    BusinessEntity bs = new BusinessEntity();
+                    bs.ModifiedDate = DateTime.Now;
+                    bs.rowguid = Guid.NewGuid();
+                    test.BusinessEntity.Add(bs);
+                    try
+                    {
+
+                        test.SaveChanges();
+
+                    }
+                    catch (Exception ex)
+                    {
+                        var value = ex.Message;
+                        int i = 0;
+                    }
+                    Person person = new Person
+                    {
+                        BusinessEntityID = bs.BusinessEntityID,
+                        PersonType = model.Person.PersonType,
+                        FirstName = model.Person.FirstName,
+                        LastName = model.Person.LastName,
+                        ModifiedDate = DateTime.Now,
+                        rowguid = Guid.NewGuid()
+                    };
+
+                    try
+                    {
+                        test.Person.Add(person);
+                        test.Database.CommandTimeout = 500;
+                        test.SaveChanges();
+                    }
+                    catch (Exception ex)
+                    {
+                        var value = ex.Message;
+                        int i = 5;
+                    }
+                    user = new ApplicationUser { UserName = model.Email, Email = model.Email, BusinessEntityID = bs.BusinessEntityID };
+                    result = await UserManager.CreateAsync(user, model.Password);
+
+                }
+
                 if (result.Succeeded)
                 {
-                    await SignInManager.SignInAsync(user, isPersistent:false, rememberBrowser:false);
-                    
+                    await SignInManager.SignInAsync(user, isPersistent: false, rememberBrowser: false);
+
                     // For more information on how to enable account confirmation and password reset please visit https://go.microsoft.com/fwlink/?LinkID=320771
                     // Send an email with this link
                     // string code = await UserManager.GenerateEmailConfirmationTokenAsync(user.Id);
@@ -175,9 +243,9 @@ namespace KaspiShop.Controllers
         //
         // GET: /Account/ConfirmEmail
         [AllowAnonymous]
-        public async Task<ActionResult> ConfirmEmail(string userId, string code)
+        public async Task<ActionResult> ConfirmEmail(int userId, string code)
         {
-            if (userId == null || code == null)
+            if (userId == 0 || code == null)
             {
                 return View("Error");
             }

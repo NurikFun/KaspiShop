@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using AW.Domain.Core;
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 
 namespace KaspiShop.Models
@@ -79,6 +80,8 @@ namespace KaspiShop.Models
         [Display(Name = "Confirm password")]
         [Compare("Password", ErrorMessage = "The password and confirmation password do not match.")]
         public string ConfirmPassword { get; set; }
+        public virtual Person Person { get; set; }
+
     }
 
     public class ResetPasswordViewModel
