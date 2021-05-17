@@ -19,7 +19,7 @@ namespace AW.Domain.Core
             PersonPhones = new HashSet<PersonPhone>();
         }
 
-        [Key]
+        [Key, ForeignKey("BusinessEntity")]
         [DatabaseGenerated(DatabaseGeneratedOption.None)]
         public int BusinessEntityID { get; set; }
 

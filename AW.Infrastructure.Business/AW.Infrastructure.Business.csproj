@@ -55,6 +55,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="OrderProcessor.cs" />
+    <Compile Include="RegisterUser.cs" />
     <Compile Include="XMLDoc.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

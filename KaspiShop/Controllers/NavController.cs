@@ -9,6 +9,7 @@ using System.Web.Mvc;
 
 namespace KaspiShop.Controllers
 {
+    [Authorize]
     public class NavController : Controller
     {
         private readonly IRepository<ProductCategory> productCategoryRepo;

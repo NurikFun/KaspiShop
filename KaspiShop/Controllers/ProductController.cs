@@ -10,6 +10,7 @@ using System.Web.Mvc;
 
 namespace KaspiShop.Controllers
 {
+    [Authorize]
     public class ProductController : Controller
     {
         private readonly IProductCatalogRepository dataRepository;

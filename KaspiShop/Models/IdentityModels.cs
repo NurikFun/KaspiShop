@@ -3,6 +3,7 @@ using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.EntityFramework;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Security.Claims;
@@ -48,7 +49,6 @@ namespace KaspiShop.Models
     public class ApplicationUser : IdentityUser<int, UserLogin, UserRole, UserClaim>
     {
         public DateTime? ActiveUntil;
-
         public int BusinessEntityID { get; set; }
         [ForeignKey("BusinessEntityID")]
         public virtual Person Person { get; set; }

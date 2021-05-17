@@ -21,15 +21,25 @@
 <body>
     <div class="navbar navbar-inverse">
         @Html.Partial("_LoginPartial")
-        @Html.Action("Summary", "ShopCart")
+        @if (User.Identity.IsAuthenticated)
+        {
+            @Html.Action("Summary", "ShopCart")
+        }
     </div>
 
     <div class="visible-xs">
-        @Html.Action("Menu", "Nav")
+        @if (User.Identity.IsAuthenticated)
+        {
+            @Html.Action("Menu", "Nav")
+        }
     </div>
     <div class="row panel">
         <div class="col-sm-3 hidden-xs">
-            @Html.Action("Menu", "Nav")
+            @if (User.Identity.IsAuthenticated)
+            {
+
+                @Html.Action("Menu", "Nav")
+            }
         </div>
         <div class="col-xs-12 col-sm-8">
             @RenderBody()

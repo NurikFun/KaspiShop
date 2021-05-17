@@ -12,6 +12,7 @@ using System.Web.Mvc;
 
 namespace KaspiShop.Controllers
 {
+    [Authorize]
     public class ShopCartController : Controller
     {
         private readonly IRepository<Product> productRepo;

@@ -34,6 +34,7 @@ namespace KaspiShop.Util
             kernel.Bind(typeof(IRepository<>)).To(typeof(Repository<>));
             kernel.Bind<IProductCatalogRepository>().To<ProductCatalogRepository>();
             kernel.Bind<IOrderProcessor>().To<OrderProcessor>();
+            kernel.Bind<IRegisterUser>().To<RegisterUser>();
         }
     }
 }

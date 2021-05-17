@@ -12,24 +12,23 @@ using KaspiShop.Models;
 using AW.Domain.Interfaces;
 using AW.Domain.Core;
 using AW.Infrastructure.Data;
+using AW.Services.Interfaces;
+using AW.Infrastructure.Business;
 
 namespace KaspiShop.Controllers
 {
-    [Authorize]
     public class AccountController : Controller
     {
         private ApplicationSignInManager _signInManager;
         private ApplicationUserManager _userManager;
-        private readonly IRepository<Person> personRepo;
         public AccountController()
         {
         }
 
-        public AccountController(ApplicationUserManager userManager, ApplicationSignInManager signInManager, IRepository<Person> personRepo)
+        public AccountController(ApplicationUserManager userManager, ApplicationSignInManager signInManager)
         {
             UserManager = userManager;
             SignInManager = signInManager;
-            this.personRepo = personRepo;
         }
 
         public ApplicationSignInManager SignInManager
@@ -120,10 +119,6 @@ namespace KaspiShop.Controllers
                 return View(model);
             }
 
-            // The following code protects for brute force attacks against the two factor codes. 
-            // If a user enters incorrect codes for a specified amount of time then the user account 
-            // will be locked out for a specified amount of time. 
-            // You can configure the account lockout settings in IdentityConfig
             var result = await SignInManager.TwoFactorSignInAsync(model.Provider, model.Code, isPersistent: model.RememberMe, rememberBrowser: model.RememberBrowser);
             switch (result)
             {
@@ -143,26 +138,6 @@ namespace KaspiShop.Controllers
         [AllowAnonymous]
         public ActionResult Register()
         {
-            using (var context = new AWContext())
-            {
-                BusinessEntity bs = new BusinessEntity();
-                bs.ModifiedDate = DateTime.Now;
-                bs.rowguid = Guid.NewGuid();
-                context.BusinessEntity.Add(bs);
-                context.SaveChanges();
-                Person person = new Person
-                {
-                    BusinessEntityID = bs.BusinessEntityID,
-                    PersonType = "IN",
-                    FirstName = "Awd",
-                    LastName = "FRGHD",
-                    ModifiedDate = DateTime.Now,
-                    rowguid = Guid.NewGuid()
-                };
-                context.Database.CommandTimeout = 600;
-                context.Person.Add(person);
-                context.SaveChanges();
-            }
             return View();
         }
 
@@ -176,67 +151,20 @@ namespace KaspiShop.Controllers
 
             if (ModelState.IsValid)
             {
-                var result = new IdentityResult();
-                var user = new ApplicationUser();
-                using (var test = new AWContext())
-                {
-                    BusinessEntity bs = new BusinessEntity();
-                    bs.ModifiedDate = DateTime.Now;
-                    bs.rowguid = Guid.NewGuid();
-                    test.BusinessEntity.Add(bs);
-                    try
-                    {
-
-                        test.SaveChanges();
-
-                    }
-                    catch (Exception ex)
-                    {
-                        var value = ex.Message;
-                        int i = 0;
-                    }
-                    Person person = new Person
-                    {
-                        BusinessEntityID = bs.BusinessEntityID,
-                        PersonType = model.Person.PersonType,
-                        FirstName = model.Person.FirstName,
-                        LastName = model.Person.LastName,
-                        ModifiedDate = DateTime.Now,
-                        rowguid = Guid.NewGuid()
-                    };
-
-                    try
-                    {
-                        test.Person.Add(person);
-                        test.Database.CommandTimeout = 500;
-                        test.SaveChanges();
-                    }
-                    catch (Exception ex)
-                    {
-                        var value = ex.Message;
-                        int i = 5;
-                    }
-                    user = new ApplicationUser { UserName = model.Email, Email = model.Email, BusinessEntityID = bs.BusinessEntityID };
-                    result = await UserManager.CreateAsync(user, model.Password);
-
-                }
+                IRegisterUser regUser = new RegisterUser();
+                int entityID = regUser.Create(model.Person);
+                var user = new ApplicationUser { UserName = model.Email, Email = model.Email, BusinessEntityID = entityID };
+                var result = await UserManager.CreateAsync(user, model.Password);
 
                 if (result.Succeeded)
                 {
                     await SignInManager.SignInAsync(user, isPersistent: false, rememberBrowser: false);
-
-                    // For more information on how to enable account confirmation and password reset please visit https://go.microsoft.com/fwlink/?LinkID=320771
-                    // Send an email with this link
-                    // string code = await UserManager.GenerateEmailConfirmationTokenAsync(user.Id);
-                    // var callbackUrl = Url.Action("ConfirmEmail", "Account", new { userId = user.Id, code = code }, protocol: Request.Url.Scheme);
-                    // await UserManager.SendEmailAsync(user.Id, "Confirm your account", "Please confirm your account by clicking <a href=\"" + callbackUrl + "\">here</a>");
 
                     return RedirectToAction("List", "Product");
                 }
                 AddErrors(result);
             }
 
-            // If we got this far, something failed, redisplay form
             return View(model);
         }
 
@@ -356,7 +284,7 @@ namespace KaspiShop.Controllers
         public async Task<ActionResult> SendCode(string returnUrl, bool rememberMe)
         {
             var userId = await SignInManager.GetVerifiedUserIdAsync();
-            if (userId == null)
+            if (userId == 0)
             {
                 return View("Error");
             }
