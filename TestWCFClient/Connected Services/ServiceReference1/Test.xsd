@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns:tns="http://schemas.datacontract.org/2004/07/WCFShopService" elementFormDefault="qualified" targetNamespace="http://schemas.datacontract.org/2004/07/WCFShopService" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:import schemaLocation="http://localhost:60919/Test/Test.svc?xsd=xsd3" namespace="http://schemas.microsoft.com/2003/10/Serialization/Arrays" />
+  <xs:complexType name="ArrayOfProductCategoryTest">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="ProductCategoryTest" nillable="true" type="tns:ProductCategoryTest" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfProductCategoryTest" nillable="true" type="tns:ArrayOfProductCategoryTest" />
+  <xs:complexType name="ProductCategoryTest">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="Name" nillable="true" type="xs:string" />
+      <xs:element xmlns:q1="http://schemas.microsoft.com/2003/10/Serialization/Arrays" minOccurs="0" name="ProductSubcategories" nillable="true" type="q1:ArrayOfstring" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ProductCategoryTest" nillable="true" type="tns:ProductCategoryTest" />
+</xs:schema>

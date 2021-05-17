@@ -1,4 +1,4 @@
-﻿@model IEnumerable<AW.Domain.Core.ProductCategory>
+﻿@model IEnumerable<KaspiShop.TestService.ProductCategoryTest>
 
 @{ bool horizontal = ((bool)(ViewContext.RouteData.Values["horizontalLayout"] ?? false));
     string wrapperClasses = horizontal ? "btn-group btn-group-sm btn-group-justified" : null; }
@@ -19,12 +19,12 @@
                     @foreach (var subcategory in link.ProductSubcategories)
                     {
                         <div class="panel-body">
-                            @Html.RouteLink(subcategory.Name, new
+                            @Html.RouteLink(subcategory, new
                             {
                                 controller = "Product",
                                 action = "List",
                                 category = link.Name,
-                                subcategory = subcategory.Name,
+                                subcategory = subcategory,
                                 page = 1
                             })
                         </div>

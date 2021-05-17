@@ -4,6 +4,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 VisualStudioVersion = 16.0.30804.86
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "KaspiShop", "KaspiShop\KaspiShop.csproj", "{A2D5C52A-DD83-4598-8580-6E4A6346C912}"
+	ProjectSection(ProjectDependencies) = postProject
+		{B571143C-79CE-4905-A065-7A07400AA8E1} = {B571143C-79CE-4905-A065-7A07400AA8E1}
+	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Domain", "Domain", "{89FB30A7-CAD6-4346-B3EB-681D6DDEA9F5}"
 EndProject
@@ -20,6 +23,13 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AW.Infrastructure.Data", "AW.Infrastructure.Data\AW.Infrastructure.Data.csproj", "{403616BE-9FCE-47AF-ADE5-2EF3DA901FC7}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AW.Infrastructure.Business", "AW.Infrastructure.Business\AW.Infrastructure.Business.csproj", "{0D8B7D4B-C62E-455F-B721-FFB50B110307}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WCFShopService", "WCFShopService\WCFShopService.csproj", "{B571143C-79CE-4905-A065-7A07400AA8E1}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TestWCFClient", "TestWCFClient\TestWCFClient.csproj", "{9A2BDE6C-9548-4393-9871-43F80BC11681}"
+	ProjectSection(ProjectDependencies) = postProject
+		{B571143C-79CE-4905-A065-7A07400AA8E1} = {B571143C-79CE-4905-A065-7A07400AA8E1}
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -51,6 +61,14 @@ Global
 		{0D8B7D4B-C62E-455F-B721-FFB50B110307}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{0D8B7D4B-C62E-455F-B721-FFB50B110307}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{0D8B7D4B-C62E-455F-B721-FFB50B110307}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B571143C-79CE-4905-A065-7A07400AA8E1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B571143C-79CE-4905-A065-7A07400AA8E1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B571143C-79CE-4905-A065-7A07400AA8E1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B571143C-79CE-4905-A065-7A07400AA8E1}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9A2BDE6C-9548-4393-9871-43F80BC11681}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9A2BDE6C-9548-4393-9871-43F80BC11681}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9A2BDE6C-9548-4393-9871-43F80BC11681}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9A2BDE6C-9548-4393-9871-43F80BC11681}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

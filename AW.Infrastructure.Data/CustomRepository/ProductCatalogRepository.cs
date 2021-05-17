@@ -12,12 +12,7 @@ namespace AW.Infrastructure.Data.CustomRepository
     public class ProductCatalogRepository : IProductCatalogRepository
     {
 
-        private AWContext context;
-        public ProductCatalogRepository(AWContext context)
-        {
-            this.context = context;
-        }
-
+        private AWContext context = new AWContext();
         public IEnumerable<ProductCatalog> GetList()
         {
             var productCatalog = (
