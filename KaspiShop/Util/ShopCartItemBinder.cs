@@ -1,4 +1,5 @@
 ﻿using AW.Domain.Core;
+using KaspiShop.ShopCartItemService;
 using System.Web.Mvc;
 
 namespace KaspiShop.Util
@@ -11,14 +12,14 @@ namespace KaspiShop.Util
             ModelBindingContext bindingContext)
         {
 
-            ShopCartItem cart = null;
+            ShopCartItemServiceClient cart = null;
             if (controllerContext.HttpContext.Session != null)
             {
-                cart = (ShopCartItem)controllerContext.HttpContext.Session[sessionKey];
+                cart = (ShopCartItemServiceClient)controllerContext.HttpContext.Session[sessionKey];
             }
             if (cart == null)
             {
-                cart = new ShopCartItem();
+                cart = new ShopCartItemServiceClient();
                 if (controllerContext.HttpContext.Session != null)
                 {
                     controllerContext.HttpContext.Session[sessionKey] = cart;

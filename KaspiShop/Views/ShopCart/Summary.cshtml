@@ -1,4 +1,4 @@
-﻿@model AW.Domain.Core.ShopCartItem
+﻿@model KaspiShop.ShopCartItemService.ShopCartItemServiceClient
 
 
 <div class="navbar-right hidden-xs">
@@ -10,7 +10,7 @@
 
 <div class="navbar-text navbar-right">
     <b class="hidden-xs">You have :</b>
-    @Model.Lines.Sum(x => x.Quantity) item(s),
+    @Model.Lines().Sum(x => x.Quantity) item(s),
     @Model.ComputeTotalValue()$
 </div>
 

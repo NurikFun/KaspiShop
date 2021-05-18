@@ -1,6 +1,6 @@
 ﻿using AW.Domain.Core;
 using AW.Domain.Interfaces;
-using KaspiShop.TestService;
+using KaspiShop.ProductCategoryService;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -14,19 +14,17 @@ namespace KaspiShop.Controllers
     public class NavController : Controller
     {
         private readonly IRepository<ProductCategory> productCategoryRepo;
-        private readonly ITest testService;
-        public NavController(IRepository<ProductCategory> productCategoryRepo, ITest testService)
+        private readonly IProductCategoryService service;
+        public NavController(IRepository<ProductCategory> productCategoryRepo, IProductCategoryService service)
         {
             this.productCategoryRepo = productCategoryRepo;
-            this.testService = testService;
+            this.service = service;
         }
 
         public PartialViewResult Menu(string category = null)
         {
             ViewBag.SelectedCategory = category;
-            var value = testService.GetAllProducts();
-          //  IEnumerable<ProductCategory> categories = productCategoryRepo.GetList();
-
+            var value = service.GetList();
             return PartialView("FlexMenu", value);
         }
     }

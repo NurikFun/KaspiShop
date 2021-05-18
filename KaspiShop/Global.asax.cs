@@ -1,4 +1,5 @@
 using AW.Domain.Core;
+using KaspiShop.ShopCartItemService;
 using KaspiShop.Util;
 using System.Web.Mvc;
 using System.Web.Optimization;
@@ -15,7 +16,7 @@ namespace KaspiShop
             RouteConfig.RegisterRoutes(RouteTable.Routes);
             BundleConfig.RegisterBundles(BundleTable.Bundles);
 
-            ModelBinders.Binders.Add(typeof(ShopCartItem), new ShopCartItemBinder());
+            ModelBinders.Binders.Add(typeof(ShopCartItemServiceClient), new ShopCartItemBinder());
 
         }
     }

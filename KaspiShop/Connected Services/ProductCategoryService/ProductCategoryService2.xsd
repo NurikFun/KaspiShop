@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns:tns="http://schemas.datacontract.org/2004/07/WCFShopService.Services" elementFormDefault="qualified" targetNamespace="http://schemas.datacontract.org/2004/07/WCFShopService.Services" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:complexType name="ArrayOfProductCategoryDTO">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="ProductCategoryDTO" nillable="true" type="tns:ProductCategoryDTO" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfProductCategoryDTO" nillable="true" type="tns:ArrayOfProductCategoryDTO" />
+  <xs:complexType name="ProductCategoryDTO">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="Name" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="SubCategories" nillable="true" type="tns:ArrayOfProductSubcategoryDTO" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ProductCategoryDTO" nillable="true" type="tns:ProductCategoryDTO" />
+  <xs:complexType name="ArrayOfProductSubcategoryDTO">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="ProductSubcategoryDTO" nillable="true" type="tns:ProductSubcategoryDTO" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfProductSubcategoryDTO" nillable="true" type="tns:ArrayOfProductSubcategoryDTO" />
+  <xs:complexType name="ProductSubcategoryDTO">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="Name" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ProductSubcategoryDTO" nillable="true" type="tns:ProductSubcategoryDTO" />
+</xs:schema>

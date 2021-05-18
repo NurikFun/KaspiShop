@@ -1,4 +1,4 @@
-﻿@model IEnumerable<KaspiShop.TestService.ProductCategoryTest>
+﻿@model IEnumerable<KaspiShop.ProductCategoryService.ProductCategoryDTO>
 
 @{ bool horizontal = ((bool)(ViewContext.RouteData.Values["horizontalLayout"] ?? false));
     string wrapperClasses = horizontal ? "btn-group btn-group-sm btn-group-justified" : null; }
@@ -16,15 +16,15 @@
                     </h4>
                 </div>
                 <div id="@link.Name" class="panel-collapse collapse">
-                    @foreach (var subcategory in link.ProductSubcategories)
+                    @foreach (var subcategory in link.SubCategories)
                     {
                         <div class="panel-body">
-                            @Html.RouteLink(subcategory, new
+                            @Html.RouteLink(subcategory.Name, new
                             {
                                 controller = "Product",
                                 action = "List",
                                 category = link.Name,
-                                subcategory = subcategory,
+                                subcategory = subcategory.Name,
                                 page = 1
                             })
                         </div>

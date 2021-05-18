@@ -1,0 +1,1 @@
+﻿<%@ ServiceHost Language="C#" Debug="true" Service="WCFShopService.Services.ShopCartItemService" CodeBehind="ShopCartItemService.svc.cs" Factory="Ninject.Extensions.Wcf.NinjectServiceHostFactory"%>

@@ -4,6 +4,9 @@ using AW.Domain.Interfaces;
 using AW.Infrastructure.Business;
 using AW.Services.Interfaces;
 using KaspiShop.Models;
+using KaspiShop.ProductService;
+using KaspiShop.SalesTerritoryService;
+using KaspiShop.ShopCartItemService;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -15,76 +18,88 @@ namespace KaspiShop.Controllers
     [Authorize]
     public class ShopCartController : Controller
     {
-        private readonly IRepository<Product> productRepo;
+        private readonly IProductService productService;
         private readonly IOrderProcessor orderRepo;
-        private readonly IRepository<SalesTerritory> salesRepo;
+        private readonly ISalesTerritoryService salesService;
+        private readonly IShopCartItemService shopCartItemService;
         private static List<string> Countries;
-        public ShopCartController(IRepository<Product> productRepo, IOrderProcessor orderRepo, 
-            IRepository<SalesTerritory> salesRepo)
+        public ShopCartController(IProductService productService, IOrderProcessor orderRepo,
+            ISalesTerritoryService salesService, IShopCartItemService shopCartItemService)
         {
-            this.productRepo = productRepo;
+            this.productService = productService;
             this.orderRepo = orderRepo;
-            this.salesRepo = salesRepo;
+            this.salesService = salesService;
+            this.shopCartItemService = shopCartItemService;
         }
 
-        public ActionResult Index(ShopCartItem cart, string returnUrl)
+        public ActionResult Index(ShopCartItemServiceClient check, string returnUrl)
         {
             return View(new ShopCartItemViewModel
             {
                 ReturnUrl = returnUrl,
-                Cart = cart
+                Cart = check
             });
         }
 
-        public RedirectToRouteResult AddToCart(ShopCartItem cart, int productId, string locationName, string returnUrl)
+        public RedirectToRouteResult AddToCart(ShopCartItemServiceClient check, int productId, string locationName, string returnUrl)
         {
-            Product product = productRepo.GetList()
-                .FirstOrDefault(p => p.ProductID == productId);
-
-            if (product != null)
+            ProductService.ProductDTO product = productService.GetProduct(productId);
+            ShopCartItemService.ProductDTO productDTO = new ShopCartItemService.ProductDTO() { 
+                Name = product.Name,
+                ProductID = product.ProductID,
+                ListPrice = product.ListPrice
+            };
+            if (productDTO != null)
             {
-                cart.AddItem(product, 1, locationName);
+                //shopCartItemService.AddItem(productDTO, 1, locationName);
+                check.AddItem(productDTO, 1, locationName);
+
             }
 
             return RedirectToAction("Index", new { returnUrl });
         }
 
-        public RedirectToRouteResult RemoveFromCart(ShopCartItem cart, int productId, string locationName, string returnUrl)
+        public RedirectToRouteResult RemoveFromCart(ShopCartItemServiceClient check, int productId, string locationName, string returnUrl)
         {
-            Product product = productRepo.GetList()
-                .FirstOrDefault(p => p.ProductID == productId);
-
-            if (product != null)
+            ProductService.ProductDTO product = productService.GetProduct(productId);
+            ShopCartItemService.ProductDTO productDTO = new ShopCartItemService.ProductDTO()
             {
-                cart.RemoveLine(product, locationName);
+                Name = product.Name,
+                ProductID = product.ProductID,
+                ListPrice = product.ListPrice
+            };
+
+            if (productDTO != null)
+            {
+                check.RemoveLine(productDTO, locationName);
+                
             }
             return RedirectToAction("Index", new { returnUrl });
         }
 
-        public PartialViewResult Summary(ShopCartItem cart)
+        public PartialViewResult Summary(ShopCartItemServiceClient check)
         {
-            return PartialView(cart);
+            return PartialView(check);
         }
-
 
         public ActionResult Checkout()
         {
-            Countries = salesRepo.GetList().Select(x => x.CountryRegionCode).Distinct().ToList();
+            Countries = salesService.GetList().ToList();
             ViewBag.Country = Countries;
             return View(new ShoppingDetails());
         }
 
         [HttpPost]
-        public ActionResult Checkout(ShopCartItem cart, ShoppingDetails shippingDetails)
+        public ActionResult Checkout(ShopCartItemServiceClient cart, ShoppingDetails shippingDetails)
         {
-            if (cart.Lines.Count() == 0)
+            if (cart.Lines().Count() == 0)
             {
                 ModelState.AddModelError("", "Sorry, your cart is empty!");
             }
 
             if (ModelState.IsValid)
             {
-                orderRepo.ProcessOrder(cart, shippingDetails);
+             //   orderRepo.ProcessOrder(cart, shippingDetails);
                 cart.Clear();
                 return View("Completed");
             }

@@ -2,6 +2,8 @@
 using AW.Domain.Interfaces;
 using AW.Infrastructure.Data;
 using KaspiShop.Models;
+using KaspiShop.ProductCatalogService;
+using KaspiShop.ProductPhotoService;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -13,10 +15,10 @@ namespace KaspiShop.Controllers
     [Authorize]
     public class ProductController : Controller
     {
-        private readonly IProductCatalogRepository dataRepository;
-        private readonly IRepository<ProductPhoto> photoRepository;
+        private readonly IProductCatalogService dataRepository;
+        private readonly IProductPhotoService photoRepository;
         public int PageSize = 4;
-        public ProductController(IProductCatalogRepository dataRepository, IRepository<ProductPhoto> photoRepository)
+        public ProductController(IProductCatalogService dataRepository, IProductPhotoService photoRepository)
         {
             this.dataRepository = dataRepository;
             this.photoRepository = photoRepository;
@@ -48,7 +50,7 @@ namespace KaspiShop.Controllers
         }
         public FileContentResult GetImage(int photoID)
         {
-            var photo = photoRepository.GetList(p => p.ProductPhotoID == photoID).FirstOrDefault();
+            var photo = photoRepository.GetPhoto(photoID);
             if (photo != null)
             {
                 return File(photo.ThumbNailPhoto, "image/jpg");

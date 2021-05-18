@@ -11,17 +11,13 @@ namespace TestWCFClient
         static void Main(string[] args)
         {
 
-            ServiceReference1.TestClient product = new ServiceReference1.TestClient();
+            Test.ProductCatalogServiceClient product = new Test.ProductCatalogServiceClient();
 
-            var values = product.GetAllProducts();
+            var values = product.GetList();
 
             foreach (var item in values)
             {
                 Console.WriteLine(item.Name);
-                foreach (var check in item.ProductSubcategories)
-                {
-                    Console.WriteLine("                 " + check);
-                }
             }
 
             Console.ReadKey();
