@@ -31,7 +31,6 @@ namespace WCFShopService.Services
                 line.Quantity += quantity;
             }
         }
-
         public void Clear()
         {
             lineCollection.Clear();
@@ -46,12 +45,10 @@ namespace WCFShopService.Services
         {
             lineCollection.RemoveAll(x => x.ProductDTO.ProductID == product.ProductID && x.LocationName == locationName);
         }
-
         public IEnumerable<ShopCartLineDTO> Lines()
         {
             return lineCollection;
         }
-
     }
 
 

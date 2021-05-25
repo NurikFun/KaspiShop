@@ -86,13 +86,14 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Global.asax" />
+    <Content Include="Services\CustomerAddressService.svc" />
+    <Content Include="Services\OrderProcessorService.svc" />
     <Content Include="Services\ProductCatalogService.svc" />
     <Content Include="Services\ProductCategoryService.svc" />
     <Content Include="Services\ProductPhotoService.svc" />
     <Content Include="Services\ProductService.svc" />
     <Content Include="Services\SalesTerritoryService.svc" />
     <Content Include="Services\ShopCartItemService.svc" />
-    <Content Include="Services\Test.svc" />
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
@@ -100,13 +101,20 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Services\IProductCatalogService.cs" />
-    <Compile Include="Services\IProductCategoryService.cs" />
-    <Compile Include="Services\IProductPhotoService.cs" />
-    <Compile Include="Services\IProductService.cs" />
-    <Compile Include="Services\ISalesTerritoryService.cs" />
-    <Compile Include="Services\IShopCartItemService.cs" />
-    <Compile Include="Services\ITest.cs" />
+    <Compile Include="Contracts\IProductCatalogService.cs" />
+    <Compile Include="Contracts\IProductCategoryService.cs" />
+    <Compile Include="Contracts\IProductPhotoService.cs" />
+    <Compile Include="Contracts\IProductService.cs" />
+    <Compile Include="Contracts\ISalesTerritoryService.cs" />
+    <Compile Include="Contracts\IShopCartItemService.cs" />
+    <Compile Include="Services\CustomerAddressService.svc.cs">
+      <DependentUpon>CustomerAddressService.svc</DependentUpon>
+    </Compile>
+    <Compile Include="Contracts\ICustomerAddressService.cs" />
+    <Compile Include="Contracts\IOrderProcessorService.cs" />
+    <Compile Include="Services\OrderProcessorService.svc.cs">
+      <DependentUpon>OrderProcessorService.svc</DependentUpon>
+    </Compile>
     <Compile Include="Services\ProductCatalogService.svc.cs">
       <DependentUpon>ProductCatalogService.svc</DependentUpon>
     </Compile>
@@ -124,9 +132,6 @@
     </Compile>
     <Compile Include="Services\ShopCartItemService.svc.cs">
       <DependentUpon>ShopCartItemService.svc</DependentUpon>
-    </Compile>
-    <Compile Include="Services\Test.svc.cs">
-      <DependentUpon>Test.svc</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>
@@ -157,6 +162,10 @@
     <ProjectReference Include="..\AW.Infrastructure.Data\AW.Infrastructure.Data.csproj">
       <Project>{403616be-9fce-47af-ade5-2ef3da901fc7}</Project>
       <Name>AW.Infrastructure.Data</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\AW.Services.Interfaces\AW.Services.Interfaces.csproj">
+      <Project>{c1b2268c-5173-4e09-b644-b44742c52429}</Project>
+      <Name>AW.Services.Interfaces</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>

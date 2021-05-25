@@ -7,11 +7,11 @@ using System.Text;
 
 namespace WCFShopService.Services
 {
-    // NOTE: You can use the "Rename" command on the "Refactor" menu to change the interface name "ITest" in both code and config file together.
     [ServiceContract]
-    public interface ITest
+    public interface IOrderProcessorService
     {
         [OperationContract]
-        void DoWork();
+        void ProcessOrder(List<ShopCartLineDTO> cart, ShoppingDetailsDTO shoppingDetails, int businessEntityID);
     }
+
 }

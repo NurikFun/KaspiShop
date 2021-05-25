@@ -1,6 +1,8 @@
 ﻿using AW.Domain.Interfaces;
+using AW.Infrastructure.Business;
 using AW.Infrastructure.Data.CustomRepository;
 using AW.Infrastructure.Data.Repository;
+using AW.Services.Interfaces;
 using Ninject;
 using Ninject.Web.Common;
 using Ninject.Web.Common.WebHost;
@@ -14,6 +16,8 @@ namespace WCFShopService
             var kernel = new StandardKernel();
             kernel.Bind(typeof(IRepository<>)).To(typeof(Repository<>));
             kernel.Bind<IProductCatalogRepository>().To<ProductCatalogRepository>();
+            kernel.Bind<IShoppingAddress>().To<ShoppingAddress>();
+            kernel.Bind<IOrderProcessor>().To<OrderProcessor>();
             return kernel;
         }
     }

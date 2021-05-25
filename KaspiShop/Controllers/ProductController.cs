@@ -4,6 +4,7 @@ using AW.Infrastructure.Data;
 using KaspiShop.Models;
 using KaspiShop.ProductCatalogService;
 using KaspiShop.ProductPhotoService;
+using KaspiShop.ShopCartItemService;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -17,14 +18,17 @@ namespace KaspiShop.Controllers
     {
         private readonly IProductCatalogService dataRepository;
         private readonly IProductPhotoService photoRepository;
+        private readonly IShopCartItemService shopCartItemService;
         public int PageSize = 4;
-        public ProductController(IProductCatalogService dataRepository, IProductPhotoService photoRepository)
+        public ProductController(IProductCatalogService dataRepository, IProductPhotoService photoRepository, 
+            IShopCartItemService shopCartItemService)
         {
             this.dataRepository = dataRepository;
             this.photoRepository = photoRepository;
+            this.shopCartItemService = shopCartItemService;
         }
 
-        public ActionResult List(string category = "Clothing", string subcategory = "Caps", int page = 1)
+        public ActionResult List(ShopCartItemServiceClient cart, string category = "Clothing", string subcategory = "Caps", int page = 1)
         {
 
             ProductsListView productsList = new ProductsListView
@@ -43,9 +47,10 @@ namespace KaspiShop.Controllers
                                    .Where(x => x.SubCategory == subcategory || x.SubCategory == null)
                                    .OrderBy(x => x.ID)
                                    .Skip((page - 1) * PageSize)
-                                   .Take(PageSize)
-            }; 
-
+                                   .Take(PageSize),
+                Cart = cart
+            };
+            productsList.CountActualProduct();
             return View(productsList);
         }
         public FileContentResult GetImage(int photoID)

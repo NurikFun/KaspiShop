@@ -43,6 +43,7 @@
   <ItemGroup>
     <Compile Include="IOrderProcessor.cs" />
     <Compile Include="IRegisterUser.cs" />
+    <Compile Include="IShoppingAddress.cs" />
     <Compile Include="IXMLDoc.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

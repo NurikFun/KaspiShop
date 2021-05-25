@@ -31,22 +31,6 @@ namespace AW.Domain.Core
                 line.Quantity += quantity;
             }
         }
-
-        public void RemoveLine(Product product, string locationName)
-        {
-            lineCollection.RemoveAll(l => l.Product.ProductID == product.ProductID && l.LocationName == locationName);
-        }
-
-        public decimal ComputeTotalValue()
-        {
-            return lineCollection.Sum(e => e.Product.ListPrice * e.Quantity);
-
-        }
-        public void Clear()
-        {
-            lineCollection.Clear();
-        }
-
         public IEnumerable<ShopCartLine> Lines
         {
             get { return lineCollection; }

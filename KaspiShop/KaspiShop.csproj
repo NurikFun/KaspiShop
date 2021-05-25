@@ -47,6 +47,9 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="AutoMapper, Version=10.0.0.0, Culture=neutral, PublicKeyToken=be96cd2c38ef1005, processorArchitecture=MSIL">
+      <HintPath>..\packages\AutoMapper.10.1.1\lib\net461\AutoMapper.dll</HintPath>
+    </Reference>
     <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
       <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.dll</HintPath>
     </Reference>
@@ -199,6 +202,16 @@
     <Compile Include="App_Start\NinjectWebCommon.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
+    <Compile Include="Connected Services\CustomerAddressService\Reference.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Compile>
+    <Compile Include="Connected Services\OrderProcessorService\Reference.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Compile>
     <Compile Include="Connected Services\ProductCatalogService\Reference.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -238,6 +251,7 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="HtmlHelpers\PagingHelpers.cs" />
+    <Compile Include="Mapping\Factory.cs" />
     <Compile Include="Migrations\202105161144221_Identity.cs" />
     <Compile Include="Migrations\202105161144221_Identity.Designer.cs">
       <DependentUpon>202105161144221_Identity.cs</DependentUpon>
@@ -255,9 +269,46 @@
     <Compile Include="Util\ShopCartItemBinder.cs" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="Connected Services\CustomerAddressService\CustomerAddressService.disco" />
+    <None Include="Connected Services\CustomerAddressService\configuration91.svcinfo" />
+    <None Include="Connected Services\CustomerAddressService\configuration.svcinfo" />
+    <Content Include="Connected Services\CustomerAddressService\KaspiShop.CustomerAddressService.ShoppingDetailsDTO.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <None Include="Connected Services\CustomerAddressService\Reference.svcmap">
+      <Generator>WCF Proxy Generator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
+    <None Include="Connected Services\OrderProcessorService\OrderProcessorService.disco" />
+    <None Include="Connected Services\OrderProcessorService\configuration91.svcinfo" />
+    <None Include="Connected Services\OrderProcessorService\configuration.svcinfo" />
+    <None Include="Connected Services\OrderProcessorService\Reference.svcmap">
+      <Generator>WCF Proxy Generator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
     <Content Include="Connected Services\ProductCatalogService\KaspiShop.ProductCatalogService.ProductCatalogDTO.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </Content>
+    <None Include="Connected Services\CustomerAddressService\CustomerAddressService.wsdl" />
+    <None Include="Connected Services\CustomerAddressService\CustomerAddressService.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Connected Services\CustomerAddressService\CustomerAddressService1.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Connected Services\CustomerAddressService\CustomerAddressService2.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Connected Services\OrderProcessorService\OrderProcessorService.wsdl" />
+    <None Include="Connected Services\OrderProcessorService\OrderProcessorService.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Connected Services\OrderProcessorService\OrderProcessorService1.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Connected Services\OrderProcessorService\OrderProcessorService2.xsd">
+      <SubType>Designer</SubType>
+    </None>
     <None Include="Connected Services\ProductCatalogService\ProductCatalogService.disco" />
     <None Include="Connected Services\ProductCatalogService\configuration91.svcinfo" />
     <None Include="Connected Services\ProductCatalogService\configuration.svcinfo" />
@@ -572,6 +623,8 @@
     <WCFMetadata Include="Connected Services\" />
   </ItemGroup>
   <ItemGroup>
+    <WCFMetadataStorage Include="Connected Services\CustomerAddressService\" />
+    <WCFMetadataStorage Include="Connected Services\OrderProcessorService\" />
     <WCFMetadataStorage Include="Connected Services\ProductCatalogService\" />
     <WCFMetadataStorage Include="Connected Services\ProductCategoryService\" />
     <WCFMetadataStorage Include="Connected Services\ProductPhotoService\" />

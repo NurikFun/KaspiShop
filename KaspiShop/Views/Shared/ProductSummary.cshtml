@@ -1,17 +1,19 @@
 ﻿@model KaspiShop.ProductCatalogService.ProductCatalogDTO
 
+@if (Model.Quantity > 0)
+{
 <div class="well">
 
-     <div class="pull-left" style="margin-right: 10px">
+    <div class="pull-left" style="margin-right: 10px">
         <img class="img-thumbnail" width="75" height="75"
              src="@Url.Action("GetImage", "Product",
                     new { Model.PhotoID })" />
-     </div>
-    
+    </div>
+
 
     <h3>
         <strong>@Model.Name.</strong>
-        <strong>Quantity : @Model.Quantity</strong>
+        <strong>Quantity : @Model.Quantity </strong>
         <span class="pull-right label label-primary">@Model.Price$</span>
     </h3>
 
@@ -29,4 +31,6 @@
         <strong>Location : @Model.Location</strong>
     </h4>
 </div>
+}
+
 
