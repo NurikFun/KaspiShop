@@ -11,14 +11,8 @@ namespace TestWCFClient
         static void Main(string[] args)
         {
 
-            Test.ProductCatalogServiceClient product = new Test.ProductCatalogServiceClient();
-
-            var values = product.GetList();
-
-            foreach (var item in values)
-            {
-                Console.WriteLine(item.Name);
-            }
+            TestMQ.TestMQClient serviceClient = new TestMQ.TestMQClient();
+            serviceClient.Process("awd");
 
             Console.ReadKey();
         }

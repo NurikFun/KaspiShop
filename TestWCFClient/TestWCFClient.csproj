@@ -45,7 +45,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Connected Services\Test\Reference.cs">
+    <Compile Include="Connected Services\TestMQ\Reference.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>Reference.svcmap</DependentUpon>
@@ -55,37 +55,31 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
-    <None Include="Connected Services\Test\ProductCatalogService.wsdl" />
-    <None Include="Connected Services\Test\ProductCatalogService.xsd">
+    <None Include="Connected Services\TestMQ\TestMQ.wsdl" />
+    <None Include="Connected Services\TestMQ\TestMQ.xsd">
       <SubType>Designer</SubType>
     </None>
-    <None Include="Connected Services\Test\ProductCatalogService1.xsd">
+    <None Include="Connected Services\TestMQ\TestMQ1.xsd">
       <SubType>Designer</SubType>
-    </None>
-    <None Include="Connected Services\Test\ProductCatalogService2.xsd">
-      <SubType>Designer</SubType>
-    </None>
-    <None Include="Connected Services\Test\TestWCFClient.Test.ProductCatalogDTO.datasource">
-      <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
   </ItemGroup>
   <ItemGroup>
     <WCFMetadata Include="Connected Services\" />
   </ItemGroup>
   <ItemGroup>
-    <WCFMetadataStorage Include="Connected Services\Test\" />
+    <WCFMetadataStorage Include="Connected Services\TestMQ\" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Connected Services\Test\ProductCatalogService.disco" />
+    <None Include="Connected Services\TestMQ\TestMQ.disco" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Connected Services\Test\configuration91.svcinfo" />
+    <None Include="Connected Services\TestMQ\configuration91.svcinfo" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Connected Services\Test\configuration.svcinfo" />
+    <None Include="Connected Services\TestMQ\configuration.svcinfo" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Connected Services\Test\Reference.svcmap">
+    <None Include="Connected Services\TestMQ\Reference.svcmap">
       <Generator>WCF Proxy Generator</Generator>
       <LastGenOutput>Reference.cs</LastGenOutput>
     </None>

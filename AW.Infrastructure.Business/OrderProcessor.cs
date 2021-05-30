@@ -6,8 +6,6 @@ using AW.Services.Interfaces;
 using System;
 using System.Transactions;
 using System.Linq;
-using System.Text;
-using System.Data.Entity;
 
 
 namespace AW.Infrastructure.Business
@@ -21,7 +19,8 @@ namespace AW.Infrastructure.Business
             {
                 InsertAddress(shoppingDetails, businessEntityID);
                 int workerID = MinSalesWorker(shoppingDetails.City);
-                InsertPurchaseOrderHeader(cart, workerID);
+                int orderID = InsertPurchaseOrderHeader(cart, businessEntityID, shoppingDetails.Country);
+                UpdateStatus(orderID, workerID);
                 scope.Complete();
             }
         }
@@ -41,17 +40,15 @@ namespace AW.Infrastructure.Business
             }
         }
 
-        private void InsertPurchaseOrderHeader(ShopCartItem cart, int workerID)
+        private int InsertPurchaseOrderHeader(ShopCartItem cart, int businessEntityID, string country)
         {
             decimal totalPrice = 0;
             PurchaseOrderDetail orderDetails = new PurchaseOrderDetail();
             var orderHeader = new PurchaseOrderHeader()
             {
                 RevisionNumber = 1, Status = 1,
-                EmployeeID = workerID, ShipMethodID = 1,
-                OrderDate = DateTime.Now, SubTotal = totalPrice,
-                TaxAmt = (totalPrice * 8) / 100, Freight = (totalPrice * 25) / 1000,
-                TotalDue = totalPrice + (totalPrice * 8) / 100 + (totalPrice * 25) / 1000, ModifiedDate = DateTime.Now
+                ShipMethodID = 1, OrderDate = DateTime.Now,
+                ModifiedDate = DateTime.Now, BusinessEntityID = businessEntityID
             };
             foreach (var items in cart.Lines)
             {
@@ -67,13 +64,51 @@ namespace AW.Infrastructure.Business
                 };
                 orderHeader.PurchaseOrderDetails.Add(orderDetails);
             }
+            orderHeader.SubTotal = totalPrice;
+            orderHeader.TaxAmt = GetTaxRate(country) / 100 * totalPrice;
+            orderHeader.Freight = ShipBaseRate() / 100 * totalPrice;
+            orderHeader.TotalDue = totalPrice + orderHeader.Freight + orderHeader.TaxAmt;
 
             using (var context = new AWContext())
             {
                 context.PurchaseOrderHeader.Add(orderHeader);
                 context.SaveChanges();
             }
+            return orderHeader.PurchaseOrderID;
         }
+
+
+        private void UpdateStatus(int orderID, int workerID, byte status = 2)
+        {
+            using (AWContext context = new AWContext())
+            {
+                var result = context.PurchaseOrderHeader.SingleOrDefault(o => o.PurchaseOrderID == orderID);
+                result.EmployeeID = workerID;
+                result.Status = status;
+                context.SaveChanges();
+            }
+        }
+
+        private decimal GetTaxRate(string country)
+        {
+            using (AWContext context = new AWContext())
+            {
+                var result = (from t in context.SalesTaxRate
+                              join s in context.StateProvince on t.StateProvinceID equals s.StateProvinceID
+                              where s.CountryRegionCode == country
+                              select t.TaxRate
+                    ).FirstOrDefault();
+                return result;
+            }
+        }
+
+        private decimal ShipBaseRate()
+        {
+            Repository<ShipMethod> repository = new Repository<ShipMethod>(new AWContext());
+            var result = repository.Get(1).ShipBase;
+            return result;
+        }
+
 
         private void InsertAddress(ShoppingDetails shoppingDetails, int businessEntityID)
         {
@@ -81,29 +116,48 @@ namespace AW.Infrastructure.Business
             ShoppingDetails details = shoppingAddress.Get(businessEntityID);
             if (!details.Equals(shoppingDetails))
             {
-                var customerAddress = new Address()
-                {
-                    AddressLine1 = shoppingDetails.Address, City = shoppingDetails.City,
-                    StateProvinceID = shoppingAddress.GetStateProvince(shoppingDetails.City, shoppingDetails.Country),
-                    PostalCode = shoppingDetails.PostalCode, ModifiedDate = DateTime.Now,
-                    rowguid = Guid.NewGuid()
-                };
-                var businessEntity = new BusinessEntityAddress()
-                {
-                    BusinessEntityID = businessEntityID, AddressTypeID = 1,
-                    ModifiedDate = DateTime.Now, rowguid = Guid.NewGuid()
-                };
                 using (var context = new AWContext())
                 {
-                    context.Address.Add(customerAddress);
-                    context.SaveChanges();
+                    var customerAddress = new Address()
+                    {
+                        AddressLine1 = shoppingDetails.Address, City = shoppingDetails.City,
+                        StateProvinceID = shoppingAddress.GetStateProvince(shoppingDetails.City, shoppingDetails.Country),
+                        PostalCode = shoppingDetails.PostalCode, ModifiedDate = DateTime.Now,
+                        rowguid = Guid.NewGuid()
+                    };
+                    if (details.Address != null)
+                    {
+                        var addressID = context.BusinessEntityAddress.SingleOrDefault(x => x.BusinessEntityID == businessEntityID).AddressID;
+                        var result = context.Address.SingleOrDefault(x => x.AddressID == addressID);
+                        result.AddressLine1 = customerAddress.AddressLine1;
+                        result.City = customerAddress.City;
+                        result.StateProvinceID = customerAddress.StateProvinceID;
+                        result.PostalCode = customerAddress.PostalCode;
+                        result.ModifiedDate = customerAddress.ModifiedDate;
+                        result.rowguid = customerAddress.rowguid;
+                        context.SaveChanges();
+                        //update 
+                    }
+                    else
+                    {
+                        var businessEntity = new BusinessEntityAddress()
+                        {
+                            BusinessEntityID = businessEntityID,
+                            AddressTypeID = 1,
+                            ModifiedDate = DateTime.Now,
+                            rowguid = Guid.NewGuid()
+                        };
+                        context.Address.Add(customerAddress);
+                        context.SaveChanges();
 
-                    businessEntity.AddressID = customerAddress.AddressID;
-                    context.BusinessEntityAddress.Add(businessEntity);
-                    context.SaveChanges();
+                        businessEntity.AddressID = customerAddress.AddressID;
+                        context.BusinessEntityAddress.Add(businessEntity);
+                        context.SaveChanges();
+                        // insert
+                    }
                 }
+                
             }
         }
-
     }
 }

@@ -46,14 +46,13 @@ namespace AW.Domain.Core
         public decimal TotalDue { get; set; }
 
         public DateTime ModifiedDate { get; set; }
-
         public virtual Employee Employee { get; set; }
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<PurchaseOrderDetail> PurchaseOrderDetails { get; set; }
-
+        public int BusinessEntityID { get; set; }
+        public virtual BusinessEntity BusinessEntities { get; set; }
         public virtual ShipMethod ShipMethod { get; set; }
-
         public virtual Vendor Vendor { get; set; }
     }
 }

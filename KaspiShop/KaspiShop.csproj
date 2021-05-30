@@ -256,6 +256,10 @@
     <Compile Include="Migrations\202105161144221_Identity.Designer.cs">
       <DependentUpon>202105161144221_Identity.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202105291834054_AddPurchaseOrderHeaderMigration.cs" />
+    <Compile Include="Migrations\202105291834054_AddPurchaseOrderHeaderMigration.Designer.cs">
+      <DependentUpon>202105291834054_AddPurchaseOrderHeaderMigration.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\IdentityModels.cs" />
@@ -617,6 +621,9 @@
   <ItemGroup>
     <EmbeddedResource Include="Migrations\202105161144221_Identity.resx">
       <DependentUpon>202105161144221_Identity.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202105291834054_AddPurchaseOrderHeaderMigration.resx">
+      <DependentUpon>202105291834054_AddPurchaseOrderHeaderMigration.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
