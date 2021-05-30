@@ -85,6 +85,7 @@ namespace AW.Infrastructure.Business
                 var result = context.PurchaseOrderHeader.SingleOrDefault(o => o.PurchaseOrderID == orderID);
                 result.EmployeeID = workerID;
                 result.Status = status;
+                result.ModifiedDate = DateTime.Now;
                 context.SaveChanges();
             }
         }
@@ -125,7 +126,7 @@ namespace AW.Infrastructure.Business
                         PostalCode = shoppingDetails.PostalCode, ModifiedDate = DateTime.Now,
                         rowguid = Guid.NewGuid()
                     };
-                    if (details.Address != null)
+                    if (details.Address != null) //update 
                     {
                         var addressID = context.BusinessEntityAddress.SingleOrDefault(x => x.BusinessEntityID == businessEntityID).AddressID;
                         var result = context.Address.SingleOrDefault(x => x.AddressID == addressID);
@@ -136,9 +137,8 @@ namespace AW.Infrastructure.Business
                         result.ModifiedDate = customerAddress.ModifiedDate;
                         result.rowguid = customerAddress.rowguid;
                         context.SaveChanges();
-                        //update 
                     }
-                    else
+                    else // insert
                     {
                         var businessEntity = new BusinessEntityAddress()
                         {
@@ -153,7 +153,6 @@ namespace AW.Infrastructure.Business
                         businessEntity.AddressID = customerAddress.AddressID;
                         context.BusinessEntityAddress.Add(businessEntity);
                         context.SaveChanges();
-                        // insert
                     }
                 }
                 

@@ -55,6 +55,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="OrderDisplay.cs" />
     <Compile Include="OrderProcessor.cs" />
     <Compile Include="RegisterUser.cs" />
     <Compile Include="ShoppingAddress.cs" />

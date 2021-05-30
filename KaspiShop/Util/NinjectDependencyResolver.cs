@@ -32,9 +32,6 @@ namespace KaspiShop.Util
         private void AddBindings()
         {
             kernel.Bind(typeof(IRepository<>)).To(typeof(Repository<>));
-            kernel.Bind<IProductCatalogRepository>().To<ProductCatalogRepository>();
-            kernel.Bind<IOrderProcessor>().To<OrderProcessor>();
-            kernel.Bind<IShoppingAddress>().To<ShoppingAddress>();
             kernel.Bind<IRegisterUser>().To<RegisterUser>();
             kernel.Bind<ProductCategoryService.IProductCategoryService>().To<ProductCategoryService.ProductCategoryServiceClient>();
             kernel.Bind<ProductCatalogService.IProductCatalogService>().To<ProductCatalogService.ProductCatalogServiceClient>();
@@ -44,7 +41,7 @@ namespace KaspiShop.Util
             kernel.Bind<ShopCartItemService.IShopCartItemService>().To<ShopCartItemService.ShopCartItemServiceClient>();
             kernel.Bind<CustomerAddressService.ICustomerAddressService>().To<CustomerAddressService.CustomerAddressServiceClient>();
             kernel.Bind<OrderProcessorService.IOrderProcessorService>().To<OrderProcessorService.OrderProcessorServiceClient>();
-
+            kernel.Bind<OrderDisplayService.IOrderDisplayService>().To<OrderDisplayService.OrderDisplayServiceClient>();
         }
     }
 }

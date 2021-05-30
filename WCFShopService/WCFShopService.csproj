@@ -87,6 +87,7 @@
   <ItemGroup>
     <Content Include="Global.asax" />
     <Content Include="Services\CustomerAddressService.svc" />
+    <Content Include="Services\OrderDisplayService.svc" />
     <Content Include="Services\OrderProcessorService.svc" />
     <Content Include="Services\ProductCatalogService.svc" />
     <Content Include="Services\ProductCategoryService.svc" />
@@ -114,6 +115,10 @@
     <Compile Include="Contracts\ICustomerAddressService.cs" />
     <Compile Include="Contracts\IOrderProcessorService.cs" />
     <Compile Include="Contracts\ITestMQ.cs" />
+    <Compile Include="Contracts\IOrderDisplayService.cs" />
+    <Compile Include="Services\OrderDisplayService.svc.cs">
+      <DependentUpon>OrderDisplayService.svc</DependentUpon>
+    </Compile>
     <Compile Include="Services\OrderProcessorService.svc.cs">
       <DependentUpon>OrderProcessorService.svc</DependentUpon>
     </Compile>

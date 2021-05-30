@@ -18,6 +18,7 @@ namespace WCFShopService
             kernel.Bind<IProductCatalogRepository>().To<ProductCatalogRepository>();
             kernel.Bind<IShoppingAddress>().To<ShoppingAddress>();
             kernel.Bind<IOrderProcessor>().To<OrderProcessor>();
+            kernel.Bind<IOrderDisplay>().To<OrderDisplay>();
             return kernel;
         }
     }

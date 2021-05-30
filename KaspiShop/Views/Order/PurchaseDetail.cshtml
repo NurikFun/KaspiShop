@@ -1,0 +1,44 @@
+﻿@model IEnumerable<KaspiShop.OrderDisplayService.ShopCartLineDTO>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Your Order details</h2>
+
+
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayName("Item")
+        </th>
+        <th>
+            @Html.DisplayName("Quantity")
+        </th>
+        <th>
+            @Html.DisplayName("Unit Price")
+        </th>
+        <th>
+            @Html.DisplayName("Total Price")
+        </th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.ProductDTO.Name)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Quantity)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ProductDTO.ListPrice)$
+            </td>
+            <td>
+                @(item.ProductDTO.ListPrice * item.Quantity)$
+            </td>
+        </tr>
+    }
+
+</table>

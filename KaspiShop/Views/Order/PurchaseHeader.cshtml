@@ -1,0 +1,54 @@
+﻿@model IEnumerable<KaspiShop.OrderDisplayService.PurchaseOrderHeaderDTO>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Your Orders</h2>
+
+
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Status)
+        </th>
+        <th>
+            @Html.DisplayName("Product sum")
+        </th>
+        <th>
+            @Html.DisplayName("Total sum with taxes and ship cost")
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ModifiedDate)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @if (item.Status == 2)
+            {
+                @Html.DisplayName("Manager assigned");
+            }
+            else
+            {
+                @Html.DisplayName("The product is in a way");
+            }
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.SubTotal)$
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.TotalDue)$
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.ModifiedDate)
+        </td>
+        <td>
+            @Html.ActionLink("Details", "PurchaseDetail", new { purchaseID = item.PurchaseOrderID }) 
+        </td>
+    </tr>
+}
+
+</table>

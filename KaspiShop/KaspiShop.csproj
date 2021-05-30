@@ -207,6 +207,11 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Reference.svcmap</DependentUpon>
     </Compile>
+    <Compile Include="Connected Services\OrderDisplayService\Reference.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Compile>
     <Compile Include="Connected Services\OrderProcessorService\Reference.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -245,6 +250,7 @@
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Controllers\NavController.cs" />
+    <Compile Include="Controllers\OrderController.cs" />
     <Compile Include="Controllers\ProductController.cs" />
     <Compile Include="Controllers\ShopCartController.cs" />
     <Compile Include="Global.asax.cs">
@@ -283,10 +289,33 @@
       <Generator>WCF Proxy Generator</Generator>
       <LastGenOutput>Reference.cs</LastGenOutput>
     </None>
+    <Content Include="Connected Services\OrderDisplayService\KaspiShop.OrderDisplayService.PurchaseOrderHeaderDTO.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Connected Services\OrderDisplayService\KaspiShop.OrderDisplayService.ShopCartLineDTO.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <None Include="Connected Services\OrderDisplayService\OrderDisplayService.wsdl" />
+    <None Include="Connected Services\OrderDisplayService\OrderDisplayService.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Connected Services\OrderDisplayService\OrderDisplayService1.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Connected Services\OrderDisplayService\OrderDisplayService2.xsd">
+      <SubType>Designer</SubType>
+    </None>
     <None Include="Connected Services\OrderProcessorService\OrderProcessorService.disco" />
     <None Include="Connected Services\OrderProcessorService\configuration91.svcinfo" />
     <None Include="Connected Services\OrderProcessorService\configuration.svcinfo" />
     <None Include="Connected Services\OrderProcessorService\Reference.svcmap">
+      <Generator>WCF Proxy Generator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
+    <None Include="Connected Services\OrderDisplayService\OrderDisplayService.disco" />
+    <None Include="Connected Services\OrderDisplayService\configuration91.svcinfo" />
+    <None Include="Connected Services\OrderDisplayService\configuration.svcinfo" />
+    <None Include="Connected Services\OrderDisplayService\Reference.svcmap">
       <Generator>WCF Proxy Generator</Generator>
       <LastGenOutput>Reference.cs</LastGenOutput>
     </None>
@@ -581,6 +610,8 @@
     <Content Include="Views\ShopCart\Summary.cshtml" />
     <Content Include="Views\ShopCart\Checkout.cshtml" />
     <Content Include="Views\ShopCart\Completed.cshtml" />
+    <Content Include="Views\Order\PurchaseHeader.cshtml" />
+    <Content Include="Views\Order\PurchaseDetail.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -631,6 +662,7 @@
   </ItemGroup>
   <ItemGroup>
     <WCFMetadataStorage Include="Connected Services\CustomerAddressService\" />
+    <WCFMetadataStorage Include="Connected Services\OrderDisplayService\" />
     <WCFMetadataStorage Include="Connected Services\OrderProcessorService\" />
     <WCFMetadataStorage Include="Connected Services\ProductCatalogService\" />
     <WCFMetadataStorage Include="Connected Services\ProductCategoryService\" />
