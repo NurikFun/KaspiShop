@@ -29,6 +29,7 @@ namespace KaspiShop.Controllers
         {
             UserManager = userManager;
             SignInManager = signInManager;
+            UserManager.UserValidator = new UserValidator<ApplicationUser, int>(UserManager) { AllowOnlyAlphanumericUserNames = false };
         }
 
         public ApplicationSignInManager SignInManager
@@ -78,20 +79,34 @@ namespace KaspiShop.Controllers
 
             // This doesn't count login failures towards account lockout
             // To enable password failures to trigger account lockout, change to shouldLockout: true
-            var result = await SignInManager.PasswordSignInAsync(model.Email, model.Password, model.RememberMe, shouldLockout: false);
-            switch (result)
+            var user = await UserManager.FindAsync(model.Email, model.Password);
+            if (user != null)
             {
-                case SignInStatus.Success:
+                await SignInManager.PasswordSignInAsync(model.Email, model.Password, model.RememberMe, shouldLockout: false);
+                if (UserManager.IsInRole(user.Id, "Customer"))
+                {
                     return RedirectToAction("List", "Product");
-                case SignInStatus.LockedOut:
-                    return View("Lockout");
-                case SignInStatus.RequiresVerification:
-                    return RedirectToAction("SendCode", new { RememberMe = model.RememberMe });
-                case SignInStatus.Failure:
-                default:
-                    ModelState.AddModelError("", "Invalid login attempt.");
-                    return View(model);
+                }
+                else
+                {
+                    return RedirectToAction("OrderHeader", "Employee");
+                }
             }
+            ModelState.AddModelError("", "Invalid login attempt.");
+            return View(model);
+            //switch (result)
+            //{
+            //    case SignInStatus.Success:
+            //        return RedirectToAction("List", "Product");
+            //    case SignInStatus.LockedOut:
+            //        return View("Lockout");
+            //    case SignInStatus.RequiresVerification:
+            //        return RedirectToAction("SendCode", new { RememberMe = model.RememberMe });
+            //    case SignInStatus.Failure:
+            //    default:
+            //        ModelState.AddModelError("", "Invalid login attempt.");
+            //        return View(model);
+            //}
         }
 
         //
@@ -155,8 +170,8 @@ namespace KaspiShop.Controllers
                 int entityID = regUser.Create(model.Person);
                 var user = new ApplicationUser { UserName = model.Email, Email = model.Email, BusinessEntityID = entityID };
                 var result = await UserManager.CreateAsync(user, model.Password);
-
-                if (result.Succeeded)
+                var role = UserManager.AddToRole(user.Id, "Customer");
+                if (result.Succeeded && role.Succeeded)
                 {
                     await SignInManager.SignInAsync(user, isPersistent: false, rememberBrowser: false);
 

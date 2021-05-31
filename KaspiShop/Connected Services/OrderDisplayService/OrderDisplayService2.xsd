@@ -4,7 +4,7 @@
   <xs:element name="GetPurchaseOrders">
     <xs:complexType>
       <xs:sequence>
-        <xs:element minOccurs="0" name="businessEntityID" type="xs:int" />
+        <xs:element minOccurs="0" name="customerID" type="xs:int" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
@@ -26,6 +26,20 @@
     <xs:complexType>
       <xs:sequence>
         <xs:element xmlns:q2="http://schemas.datacontract.org/2004/07/WCFShopService.Services" minOccurs="0" name="GetPurchaseOrderDetailsResult" nillable="true" type="q2:ArrayOfShopCartLineDTO" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetCustomerOrder">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="employeeID" type="xs:int" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetCustomerOrderResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q3="http://schemas.datacontract.org/2004/07/WCFShopService.Services" minOccurs="0" name="GetCustomerOrderResult" nillable="true" type="q3:ArrayOfOrderDetailDTO" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>

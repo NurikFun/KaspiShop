@@ -248,6 +248,7 @@
       <DependentUpon>Reference.svcmap</DependentUpon>
     </Compile>
     <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\EmployeeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Controllers\NavController.cs" />
     <Compile Include="Controllers\OrderController.cs" />
@@ -293,6 +294,9 @@
       <DependentUpon>Reference.svcmap</DependentUpon>
     </Content>
     <Content Include="Connected Services\OrderDisplayService\KaspiShop.OrderDisplayService.ShopCartLineDTO.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Connected Services\OrderDisplayService\KaspiShop.OrderDisplayService.OrderDetailDTO.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </Content>
     <None Include="Connected Services\OrderDisplayService\OrderDisplayService.wsdl" />
@@ -612,6 +616,7 @@
     <Content Include="Views\ShopCart\Completed.cshtml" />
     <Content Include="Views\Order\PurchaseHeader.cshtml" />
     <Content Include="Views\Order\PurchaseDetail.cshtml" />
+    <Content Include="Views\Employee\OrderHeader.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

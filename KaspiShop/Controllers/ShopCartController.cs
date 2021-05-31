@@ -22,7 +22,7 @@ using System.Web.Security;
 
 namespace KaspiShop.Controllers
 {
-    [Authorize]
+    [Authorize(Roles = "Customer")]
     public class ShopCartController : Controller
     {
         private readonly IProductService productService;

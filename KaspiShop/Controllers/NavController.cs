@@ -10,7 +10,7 @@ using System.Web.Mvc;
 
 namespace KaspiShop.Controllers
 {
-    [Authorize]
+    [Authorize(Roles = "Customer")]
     public class NavController : Controller
     {
         private readonly IRepository<ProductCategory> productCategoryRepo;

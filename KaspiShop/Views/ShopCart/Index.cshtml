@@ -24,6 +24,7 @@
         @foreach (var line in Model.Cart.Lines())
         {
 <tr>
+
     <td class="text-center">@line.Quantity</td>
     <td class="text-left">@line.ProductDTO.Name</td>
     <td class="text-left">@line.LocationName</td>

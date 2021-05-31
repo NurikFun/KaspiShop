@@ -17,19 +17,54 @@ namespace KaspiShop.OrderDisplayService {
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
     [System.Runtime.Serialization.DataContractAttribute(Name="PurchaseOrderHeaderDTO", Namespace="http://schemas.datacontract.org/2004/07/WCFShopService.Services")]
     [System.SerializableAttribute()]
-    public partial class PurchaseOrderHeaderDTO : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
-        
-        [System.NonSerializedAttribute()]
-        private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
+    public partial class PurchaseOrderHeaderDTO : KaspiShop.OrderDisplayService.BaseEntityDTO {
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
         private System.DateTime ModifiedDateField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private int PurchaseOrderIDField;
+        private byte StatusField;
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public System.DateTime ModifiedDate {
+            get {
+                return this.ModifiedDateField;
+            }
+            set {
+                if ((this.ModifiedDateField.Equals(value) != true)) {
+                    this.ModifiedDateField = value;
+                    this.RaisePropertyChanged("ModifiedDate");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public byte Status {
+            get {
+                return this.StatusField;
+            }
+            set {
+                if ((this.StatusField.Equals(value) != true)) {
+                    this.StatusField = value;
+                    this.RaisePropertyChanged("Status");
+                }
+            }
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="BaseEntityDTO", Namespace="http://schemas.datacontract.org/2004/07/WCFShopService.Services")]
+    [System.SerializableAttribute()]
+    [System.Runtime.Serialization.KnownTypeAttribute(typeof(KaspiShop.OrderDisplayService.OrderDetailDTO))]
+    [System.Runtime.Serialization.KnownTypeAttribute(typeof(KaspiShop.OrderDisplayService.PurchaseOrderHeaderDTO))]
+    public partial class BaseEntityDTO : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
+        
+        [System.NonSerializedAttribute()]
+        private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private byte StatusField;
+        private int PurchaseOrderIDField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
         private decimal SubTotalField;
@@ -48,19 +83,6 @@ namespace KaspiShop.OrderDisplayService {
         }
         
         [System.Runtime.Serialization.DataMemberAttribute()]
-        public System.DateTime ModifiedDate {
-            get {
-                return this.ModifiedDateField;
-            }
-            set {
-                if ((this.ModifiedDateField.Equals(value) != true)) {
-                    this.ModifiedDateField = value;
-                    this.RaisePropertyChanged("ModifiedDate");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
         public int PurchaseOrderID {
             get {
                 return this.PurchaseOrderIDField;
@@ -69,19 +91,6 @@ namespace KaspiShop.OrderDisplayService {
                 if ((this.PurchaseOrderIDField.Equals(value) != true)) {
                     this.PurchaseOrderIDField = value;
                     this.RaisePropertyChanged("PurchaseOrderID");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public byte Status {
-            get {
-                return this.StatusField;
-            }
-            set {
-                if ((this.StatusField.Equals(value) != true)) {
-                    this.StatusField = value;
-                    this.RaisePropertyChanged("Status");
                 }
             }
         }
@@ -118,6 +127,45 @@ namespace KaspiShop.OrderDisplayService {
             System.ComponentModel.PropertyChangedEventHandler propertyChanged = this.PropertyChanged;
             if ((propertyChanged != null)) {
                 propertyChanged(this, new System.ComponentModel.PropertyChangedEventArgs(propertyName));
+            }
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="OrderDetailDTO", Namespace="http://schemas.datacontract.org/2004/07/WCFShopService.Services")]
+    [System.SerializableAttribute()]
+    public partial class OrderDetailDTO : KaspiShop.OrderDisplayService.BaseEntityDTO {
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string AddressLineField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string CityField;
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string AddressLine {
+            get {
+                return this.AddressLineField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.AddressLineField, value) != true)) {
+                    this.AddressLineField = value;
+                    this.RaisePropertyChanged("AddressLine");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string City {
+            get {
+                return this.CityField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.CityField, value) != true)) {
+                    this.CityField = value;
+                    this.RaisePropertyChanged("City");
+                }
             }
         }
     }
@@ -281,16 +329,22 @@ namespace KaspiShop.OrderDisplayService {
     public interface IOrderDisplayService {
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IOrderDisplayService/GetPurchaseOrders", ReplyAction="http://tempuri.org/IOrderDisplayService/GetPurchaseOrdersResponse")]
-        KaspiShop.OrderDisplayService.PurchaseOrderHeaderDTO[] GetPurchaseOrders(int businessEntityID);
+        KaspiShop.OrderDisplayService.PurchaseOrderHeaderDTO[] GetPurchaseOrders(int customerID);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IOrderDisplayService/GetPurchaseOrders", ReplyAction="http://tempuri.org/IOrderDisplayService/GetPurchaseOrdersResponse")]
-        System.Threading.Tasks.Task<KaspiShop.OrderDisplayService.PurchaseOrderHeaderDTO[]> GetPurchaseOrdersAsync(int businessEntityID);
+        System.Threading.Tasks.Task<KaspiShop.OrderDisplayService.PurchaseOrderHeaderDTO[]> GetPurchaseOrdersAsync(int customerID);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IOrderDisplayService/GetPurchaseOrderDetails", ReplyAction="http://tempuri.org/IOrderDisplayService/GetPurchaseOrderDetailsResponse")]
         KaspiShop.OrderDisplayService.ShopCartLineDTO[] GetPurchaseOrderDetails(int purchaseID);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IOrderDisplayService/GetPurchaseOrderDetails", ReplyAction="http://tempuri.org/IOrderDisplayService/GetPurchaseOrderDetailsResponse")]
         System.Threading.Tasks.Task<KaspiShop.OrderDisplayService.ShopCartLineDTO[]> GetPurchaseOrderDetailsAsync(int purchaseID);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IOrderDisplayService/GetCustomerOrder", ReplyAction="http://tempuri.org/IOrderDisplayService/GetCustomerOrderResponse")]
+        KaspiShop.OrderDisplayService.OrderDetailDTO[] GetCustomerOrder(int employeeID);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IOrderDisplayService/GetCustomerOrder", ReplyAction="http://tempuri.org/IOrderDisplayService/GetCustomerOrderResponse")]
+        System.Threading.Tasks.Task<KaspiShop.OrderDisplayService.OrderDetailDTO[]> GetCustomerOrderAsync(int employeeID);
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
@@ -320,12 +374,12 @@ namespace KaspiShop.OrderDisplayService {
                 base(binding, remoteAddress) {
         }
         
-        public KaspiShop.OrderDisplayService.PurchaseOrderHeaderDTO[] GetPurchaseOrders(int businessEntityID) {
-            return base.Channel.GetPurchaseOrders(businessEntityID);
+        public KaspiShop.OrderDisplayService.PurchaseOrderHeaderDTO[] GetPurchaseOrders(int customerID) {
+            return base.Channel.GetPurchaseOrders(customerID);
         }
         
-        public System.Threading.Tasks.Task<KaspiShop.OrderDisplayService.PurchaseOrderHeaderDTO[]> GetPurchaseOrdersAsync(int businessEntityID) {
-            return base.Channel.GetPurchaseOrdersAsync(businessEntityID);
+        public System.Threading.Tasks.Task<KaspiShop.OrderDisplayService.PurchaseOrderHeaderDTO[]> GetPurchaseOrdersAsync(int customerID) {
+            return base.Channel.GetPurchaseOrdersAsync(customerID);
         }
         
         public KaspiShop.OrderDisplayService.ShopCartLineDTO[] GetPurchaseOrderDetails(int purchaseID) {
@@ -334,6 +388,14 @@ namespace KaspiShop.OrderDisplayService {
         
         public System.Threading.Tasks.Task<KaspiShop.OrderDisplayService.ShopCartLineDTO[]> GetPurchaseOrderDetailsAsync(int purchaseID) {
             return base.Channel.GetPurchaseOrderDetailsAsync(purchaseID);
+        }
+        
+        public KaspiShop.OrderDisplayService.OrderDetailDTO[] GetCustomerOrder(int employeeID) {
+            return base.Channel.GetCustomerOrder(employeeID);
+        }
+        
+        public System.Threading.Tasks.Task<KaspiShop.OrderDisplayService.OrderDetailDTO[]> GetCustomerOrderAsync(int employeeID) {
+            return base.Channel.GetCustomerOrderAsync(employeeID);
         }
     }
 }

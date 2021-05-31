@@ -21,6 +21,7 @@ namespace KaspiShop.Controllers
             this.orderDisplay = orderDisplay;
         }
 
+        [Authorize(Roles = "Customer")]
         public ActionResult PurchaseHeader()
         {
             int id = HttpContext.GetOwinContext()

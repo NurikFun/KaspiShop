@@ -46,7 +46,7 @@
             @Html.DisplayFor(modelItem => item.ModifiedDate)
         </td>
         <td>
-            @Html.ActionLink("Details", "PurchaseDetail", new { purchaseID = item.PurchaseOrderID }) 
+            @Html.ActionLink("Details", "PurchaseDetail", new { purchaseID = item.PurchaseOrderID }, new { @class = "btn btn-default navbar-btn" })
         </td>
     </tr>
 }

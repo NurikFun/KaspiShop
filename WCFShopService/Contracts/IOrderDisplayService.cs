@@ -12,24 +12,41 @@ namespace WCFShopService.Services
     public interface IOrderDisplayService
     {
         [OperationContract]
-        List<PurchaseOrderHeaderDTO> GetPurchaseOrders(int businessEntityID);
+        List<PurchaseOrderHeaderDTO> GetPurchaseOrders(int customerID);
         [OperationContract]
         List<ShopCartLineDTO> GetPurchaseOrderDetails(int purchaseID);
+        [OperationContract]
+        List<OrderDetailDTO> GetCustomerOrder(int employeeID);
     }
 
     [DataContract]
-    public class PurchaseOrderHeaderDTO
+    public class BaseEntityDTO
     {
         [DataMember]
         public int PurchaseOrderID { get; set; }
         [DataMember]
-        public byte Status { get; set; }
-        [DataMember]
         public decimal SubTotal { get; set; }
         [DataMember]
         public decimal TotalDue { get; set; }
+    }
+
+    [DataContract]
+    public class PurchaseOrderHeaderDTO : BaseEntityDTO
+    {
+        [DataMember]
+        public byte Status { get; set; }
         [DataMember]
         public DateTime ModifiedDate { get; set; }
+
+    }
+
+    [DataContract]
+    public class OrderDetailDTO : BaseEntityDTO
+    {
+        [DataMember]
+        public string City { get; set; }
+        [DataMember]
+        public string AddressLine { get; set; }
 
     }
 

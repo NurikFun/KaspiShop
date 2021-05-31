@@ -2,14 +2,16 @@
 
 
 <div class="navbar-right hidden-xs">
-    @Html.ActionLink("Check out", "Index", "ShopCart",
+ 
+        @Html.ActionLink("Check out", "Index", "ShopCart",
         new { returnUrl = Request.Url.PathAndQuery },
         new { @class = "btn btn-default navbar-btn" }
         )
-    @Html.ActionLink("My orders", "PurchaseHeader", "Order",
-        new { returnUrl = Request.Url.PathAndQuery },
-        new { @class = "btn btn-default navbar-btn" }
-        )
+        @Html.ActionLink("My orders", "PurchaseHeader", "Order",
+            new { returnUrl = Request.Url.PathAndQuery },
+            new { @class = "btn btn-default navbar-btn" }
+            )
+ 
 </div>
 
 <div class="navbar-text navbar-right">

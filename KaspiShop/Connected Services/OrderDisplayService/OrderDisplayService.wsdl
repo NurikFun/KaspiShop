@@ -19,6 +19,12 @@
   <wsdl:message name="IOrderDisplayService_GetPurchaseOrderDetails_OutputMessage">
     <wsdl:part name="parameters" element="tns:GetPurchaseOrderDetailsResponse" />
   </wsdl:message>
+  <wsdl:message name="IOrderDisplayService_GetCustomerOrder_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetCustomerOrder" />
+  </wsdl:message>
+  <wsdl:message name="IOrderDisplayService_GetCustomerOrder_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetCustomerOrderResponse" />
+  </wsdl:message>
   <wsdl:portType name="IOrderDisplayService">
     <wsdl:operation name="GetPurchaseOrders">
       <wsdl:input wsaw:Action="http://tempuri.org/IOrderDisplayService/GetPurchaseOrders" message="tns:IOrderDisplayService_GetPurchaseOrders_InputMessage" />
@@ -27,6 +33,10 @@
     <wsdl:operation name="GetPurchaseOrderDetails">
       <wsdl:input wsaw:Action="http://tempuri.org/IOrderDisplayService/GetPurchaseOrderDetails" message="tns:IOrderDisplayService_GetPurchaseOrderDetails_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/IOrderDisplayService/GetPurchaseOrderDetailsResponse" message="tns:IOrderDisplayService_GetPurchaseOrderDetails_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetCustomerOrder">
+      <wsdl:input wsaw:Action="http://tempuri.org/IOrderDisplayService/GetCustomerOrder" message="tns:IOrderDisplayService_GetCustomerOrder_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IOrderDisplayService/GetCustomerOrderResponse" message="tns:IOrderDisplayService_GetCustomerOrder_OutputMessage" />
     </wsdl:operation>
   </wsdl:portType>
   <wsdl:binding name="BasicHttpBinding_IOrderDisplayService" type="tns:IOrderDisplayService">
@@ -42,6 +52,15 @@
     </wsdl:operation>
     <wsdl:operation name="GetPurchaseOrderDetails">
       <soap:operation soapAction="http://tempuri.org/IOrderDisplayService/GetPurchaseOrderDetails" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetCustomerOrder">
+      <soap:operation soapAction="http://tempuri.org/IOrderDisplayService/GetCustomerOrder" style="document" />
       <wsdl:input>
         <soap:body use="literal" />
       </wsdl:input>

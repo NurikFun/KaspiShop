@@ -1,4 +1,5 @@
 ﻿using AW.Domain.Core;
+using AW.Domain.Core.CustomDTO;
 using AW.Infrastructure.Data;
 using AW.Services.Interfaces;
 using System;
@@ -11,14 +12,38 @@ namespace AW.Infrastructure.Business
 {
     public class OrderDisplay : IOrderDisplay
     {
-        public List<PurchaseOrderHeader> GetPurchaseOrders(int businessEntityID)
+
+        public List<PurchaseOrderHeader> GetPurchaseOrders(int customerID)
         {
             using (AWContext context = new AWContext())
             {
                 var result = (
                         from h in context.PurchaseOrderHeader
-                        where (h.Status == 2 || h.Status == 3) && h.BusinessEntityID == businessEntityID
+                        where (h.Status == 2 || h.Status == 3) && h.BusinessEntityID == customerID
                         select h
+                    );
+                return result.ToList();
+            }
+        }
+
+        public List<OrderDetail> GetCustomerOrder(int employeeID)
+        {
+            using (AWContext context = new AWContext())
+            {
+                var result = (
+                        from p in context.PurchaseOrderHeader
+                        join be in context.BusinessEntity on p.BusinessEntityID equals be.BusinessEntityID
+                        join bea in context.BusinessEntityAddress on be.BusinessEntityID equals bea.BusinessEntityID
+                        join a in context.Address on bea.AddressID equals a.AddressID
+                        where p.EmployeeID == employeeID && p.Status == 2
+                        select new OrderDetail
+                        {
+                            PurchaseID = p.PurchaseOrderID,
+                            City = a.City,
+                            AddressLine = a.AddressLine1,
+                            SubTotal = p.SubTotal,
+                            TotalDue = p.TotalDue
+                        }
                     );
                 return result.ToList();
             }
@@ -49,7 +74,6 @@ namespace AW.Infrastructure.Business
                 }
                 return result;
             }
-
         }
 
     }

@@ -38,6 +38,8 @@ namespace KaspiShop
         public ApplicationUserManager(IUserStore<ApplicationUser, int> store)
             : base(store)
         {
+            UserValidator = new UserValidator<ApplicationUser, int>(this) { AllowOnlyAlphanumericUserNames = false };
+
         }
 
         public static ApplicationUserManager Create(IdentityFactoryOptions<ApplicationUserManager> options, IOwinContext context)
@@ -48,13 +50,14 @@ namespace KaspiShop
             {
                 AllowOnlyAlphanumericUserNames = false,
                 RequireUniqueEmail = true
+                
             };
 
             // Configure validation logic for passwords
             manager.PasswordValidator = new PasswordValidator
             {
                 RequiredLength = 8,
-                // RequireNonLetterOrDigit = true,
+                RequireNonLetterOrDigit = true,
                 RequireDigit = true,
                 RequireLowercase = true,
                 RequireUppercase = true,

@@ -18,11 +18,11 @@ namespace WCFShopService.Services
             this.orderRepo = orderRepo;
         }
 
-        public List<PurchaseOrderHeaderDTO> GetPurchaseOrders(int businessEntityID)
+        public List<PurchaseOrderHeaderDTO> GetPurchaseOrders(int customerID)
         {
             var result = new List<PurchaseOrderHeaderDTO>();
 
-            var details = orderRepo.GetPurchaseOrders(businessEntityID);
+            var details = orderRepo.GetPurchaseOrders(customerID);
 
             foreach (var detail in details)
             {
@@ -32,6 +32,29 @@ namespace WCFShopService.Services
                     SubTotal = detail.SubTotal,
                     TotalDue = detail.TotalDue,
                     PurchaseOrderID = detail.PurchaseOrderID
+                });
+            }
+
+            return result;
+        }
+
+
+        public List<OrderDetailDTO> GetCustomerOrder(int employeeID)
+        {
+            var orders = orderRepo.GetCustomerOrder(employeeID);
+
+            List<OrderDetailDTO> result = new List<OrderDetailDTO>();
+
+
+            foreach (var order in orders)
+            {
+                result.Add(new OrderDetailDTO
+                {
+                    City = order.City,
+                    AddressLine = order.AddressLine,
+                    SubTotal = order.SubTotal,
+                    TotalDue = order.TotalDue,
+                    PurchaseOrderID = order.PurchaseID
                 });
             }
 
@@ -59,8 +82,4 @@ namespace WCFShopService.Services
         }
 
     }
-
-
-
-
 }

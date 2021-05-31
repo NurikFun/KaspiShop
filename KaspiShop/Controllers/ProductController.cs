@@ -13,7 +13,7 @@ using System.Web.Mvc;
 
 namespace KaspiShop.Controllers
 {
-    [Authorize]
+    [Authorize(Roles = "Customer")]
     public class ProductController : Controller
     {
         private readonly IProductCatalogService dataRepository;

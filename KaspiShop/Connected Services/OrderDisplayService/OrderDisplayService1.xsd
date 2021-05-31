@@ -7,15 +7,24 @@
   </xs:complexType>
   <xs:element name="ArrayOfPurchaseOrderHeaderDTO" nillable="true" type="tns:ArrayOfPurchaseOrderHeaderDTO" />
   <xs:complexType name="PurchaseOrderHeaderDTO">
+    <xs:complexContent mixed="false">
+      <xs:extension base="tns:BaseEntityDTO">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="ModifiedDate" type="xs:dateTime" />
+          <xs:element minOccurs="0" name="Status" type="xs:unsignedByte" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="PurchaseOrderHeaderDTO" nillable="true" type="tns:PurchaseOrderHeaderDTO" />
+  <xs:complexType name="BaseEntityDTO">
     <xs:sequence>
-      <xs:element minOccurs="0" name="ModifiedDate" type="xs:dateTime" />
       <xs:element minOccurs="0" name="PurchaseOrderID" type="xs:int" />
-      <xs:element minOccurs="0" name="Status" type="xs:unsignedByte" />
       <xs:element minOccurs="0" name="SubTotal" type="xs:decimal" />
       <xs:element minOccurs="0" name="TotalDue" type="xs:decimal" />
     </xs:sequence>
   </xs:complexType>
-  <xs:element name="PurchaseOrderHeaderDTO" nillable="true" type="tns:PurchaseOrderHeaderDTO" />
+  <xs:element name="BaseEntityDTO" nillable="true" type="tns:BaseEntityDTO" />
   <xs:complexType name="ArrayOfShopCartLineDTO">
     <xs:sequence>
       <xs:element minOccurs="0" maxOccurs="unbounded" name="ShopCartLineDTO" nillable="true" type="tns:ShopCartLineDTO" />
@@ -38,4 +47,21 @@
     </xs:sequence>
   </xs:complexType>
   <xs:element name="ProductDTO" nillable="true" type="tns:ProductDTO" />
+  <xs:complexType name="ArrayOfOrderDetailDTO">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="OrderDetailDTO" nillable="true" type="tns:OrderDetailDTO" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfOrderDetailDTO" nillable="true" type="tns:ArrayOfOrderDetailDTO" />
+  <xs:complexType name="OrderDetailDTO">
+    <xs:complexContent mixed="false">
+      <xs:extension base="tns:BaseEntityDTO">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="AddressLine" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="City" nillable="true" type="xs:string" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="OrderDetailDTO" nillable="true" type="tns:OrderDetailDTO" />
 </xs:schema>
