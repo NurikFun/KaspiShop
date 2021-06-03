@@ -11,8 +11,6 @@ namespace TestWCFClient
         static void Main(string[] args)
         {
 
-            TestMQ.TestMQClient serviceClient = new TestMQ.TestMQClient();
-            serviceClient.Process("awd");
 
             Console.ReadKey();
         }

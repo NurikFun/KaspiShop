@@ -11,10 +11,10 @@ namespace AW.Domain.Core
     {
         private List<ShopCartLine> lineCollection = new List<ShopCartLine>();
 
-        public void AddItem(Product product, int quantity, string locationName)
+        public void AddItem(Product product, int quantity)
         {
             ShopCartLine line = lineCollection
-                .Where(p => p.Product.ProductID == product.ProductID && p.LocationName == locationName)
+                .Where(p => p.Product.ProductID == product.ProductID)
                 .FirstOrDefault();
 
             if (line == null)
@@ -22,8 +22,7 @@ namespace AW.Domain.Core
                 lineCollection.Add(new ShopCartLine
                 {
                     Product = product,
-                    Quantity = quantity,
-                    LocationName = locationName
+                    Quantity = quantity
                 });
             }
             else
@@ -41,6 +40,5 @@ namespace AW.Domain.Core
     {
         public Product Product { get; set; }
         public int Quantity { get; set; }
-        public string LocationName { get; set; }
     }
 }

@@ -42,7 +42,8 @@ namespace AW.Infrastructure.Business
                             City = a.City,
                             AddressLine = a.AddressLine1,
                             SubTotal = p.SubTotal,
-                            TotalDue = p.TotalDue
+                            TotalDue = p.TotalDue,
+                            CustomerID = p.BusinessEntityID
                         }
                     );
                 return result.ToList();

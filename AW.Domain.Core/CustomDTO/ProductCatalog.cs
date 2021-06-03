@@ -12,8 +12,7 @@ namespace AW.Domain.Core
         public string Name { get; set; }
         public string Color { get; set; }
         public string Description { get; set; }
-        public int Quantity { get; set; }
-        public string Location { get; set; }
+        public Int16 Quantity { get; set; }
         public string SubCategory { get; set; }
         public int PhotoID { get; set; }
         public decimal Price { get; set; }

@@ -31,7 +31,6 @@ namespace WCFShopService.Services
                     Color = value.Color,
                     Description = value.Description,
                     Quantity = value.Quantity,
-                    Location = value.Location,
                     SubCategory = value.SubCategory,
                     PhotoID = value.PhotoID,
                     Price = value.Price

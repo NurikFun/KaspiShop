@@ -16,7 +16,6 @@
   <xs:element name="ArrayOfShopCartLineDTO" nillable="true" type="tns:ArrayOfShopCartLineDTO" />
   <xs:complexType name="ShopCartLineDTO">
     <xs:sequence>
-      <xs:element minOccurs="0" name="LocationName" nillable="true" type="xs:string" />
       <xs:element minOccurs="0" name="ProductDTO" nillable="true" type="tns:ProductDTO" />
       <xs:element minOccurs="0" name="Quantity" type="xs:int" />
     </xs:sequence>

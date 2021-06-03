@@ -25,6 +25,8 @@ namespace WCFShopService.Services
         [DataMember]
         public int PurchaseOrderID { get; set; }
         [DataMember]
+        public int CustomerID { get; set; }
+        [DataMember]
         public decimal SubTotal { get; set; }
         [DataMember]
         public decimal TotalDue { get; set; }

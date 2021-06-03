@@ -12,34 +12,29 @@ namespace AW.Infrastructure.Data.CustomRepository
     public class ProductCatalogRepository : IProductCatalogRepository
     {
 
-        private AWContext context = new AWContext();
         public IEnumerable<ProductCatalog> GetList()
         {
-            var productCatalog = (
-                                    from p in context.Product
-                                    join pri in context.ProductInventory on p.ProductID equals pri.ProductID
-                                    join prl in context.Location on pri.LocationID equals prl.LocationID
-                                    join prm in context.ProductModel on p.ProductModelID equals prm.ProductModelID
-                                    join prmprd in context.ProductModelProductDescriptionCulture on prm.ProductModelID equals prmprd.ProductModelID
-                                    join prd in context.ProductDescription on prmprd.ProductDescriptionID equals prd.ProductDescriptionID
-                                    join prsc in context.ProductSubcategory on p.ProductSubcategoryID equals prsc.ProductSubcategoryID
-                                    join prc in context.ProductCategory on prsc.ProductCategoryID equals prc.ProductCategoryID
-                                    join prph in context.ProductProductPhoto on p.ProductID equals prph.ProductID
-                                    where prmprd.CultureID.Contains("en") && pri.Quantity > 0
-                                    select new ProductCatalog
-                                    {
-                                        ID = p.ProductID,
-                                        Name = p.Name,
-                                        Color = p.Color,
-                                        Description = prd.Description,
-                                        Quantity = pri.Quantity,
-                                        Location = prl.Name,
-                                        SubCategory = prsc.Name,
-                                        PhotoID = prph.ProductPhotoID,
-                                        Price = p.ListPrice
-                                    }
-                );
-            return productCatalog.ToList();
+            using (var context = new AWContext())
+            {
+                var productCatalog = context.Database.SqlQuery<ProductCatalog>(
+                    @"select pr.ProductID as ID, pr.Name, pr.Color, prd.Description, temp.Quantity, prsc.Name as SubCategory, prph.ProductPhotoID as PhotoID, pr.ListPrice as Price from Production.Product as pr
+                          inner join Production.ProductModel as prm on prm.ProductModelID = pr.ProductModelID
+                          inner join Production.ProductModelProductDescriptionCulture as prmprd on prmprd.ProductModelID = prm.ProductModelID
+                          inner join Production.ProductDescription as prd on prd.ProductDescriptionID = prmprd.ProductDescriptionID
+                          inner join Production.ProductSubcategory as prsc on pr.ProductSubcategoryID = prsc.ProductSubcategoryID
+                          inner join Production.ProductCategory as prc on prsc.ProductCategoryID = prc.ProductCategoryID
+                          inner join Production.ProductProductPhoto as prph on pr.ProductID = prph.ProductID
+                          inner join (
+	                        SELECT  ProductID, quantity, roworder from (
+	                        select ProductID, quantity, row_number() over(partition by ProductID order by quantity desc) as roworder
+	                        from [AdventureWorks2019].[Production].[ProductInventory]
+	                        ) innerTemp 
+                          ) temp on temp.ProductID = pr.ProductID
+                          where prmprd.CultureID like ('%en%') and temp.Quantity > 0 and roworder = 1;").ToList();
+
+                return productCatalog;
+
+            }
         }
     }
 }

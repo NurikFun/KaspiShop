@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ReferenceGroup xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" ID="145de59c-1621-45e4-b502-3bfbeb3095b9" xmlns="urn:schemas-microsoft-com:xml-wcfservicemap">
+<ReferenceGroup xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" ID="4247cb78-d791-4528-b988-93b1a95d8414" xmlns="urn:schemas-microsoft-com:xml-wcfservicemap">
   <ClientOptions>
     <GenerateAsynchronousMethods>false</GenerateAsynchronousMethods>
     <GenerateTaskBasedAsynchronousMethod>true</GenerateTaskBasedAsynchronousMethod>
@@ -22,11 +22,11 @@
     <MetadataSource Address="http://localhost:60919/Services/OrderDisplayService.svc" Protocol="http" SourceId="1" />
   </MetadataSources>
   <Metadata>
-    <MetadataFile FileName="OrderDisplayService.xsd" MetadataType="Schema" ID="c51e672c-d6c9-4064-b635-c389c31dfc81" SourceId="1" SourceUrl="http://localhost:60919/Services/OrderDisplayService.svc?xsd=xsd1" />
-    <MetadataFile FileName="OrderDisplayService.disco" MetadataType="Disco" ID="59ef9455-6d46-47ee-8b3a-608633125c0e" SourceId="1" SourceUrl="http://localhost:60919/Services/OrderDisplayService.svc?disco" />
-    <MetadataFile FileName="OrderDisplayService1.xsd" MetadataType="Schema" ID="b0ae23e6-23ce-4be9-93f5-0e15c8f5a77e" SourceId="1" SourceUrl="http://localhost:60919/Services/OrderDisplayService.svc?xsd=xsd2" />
-    <MetadataFile FileName="OrderDisplayService2.xsd" MetadataType="Schema" ID="7fbf338a-9a3b-49ea-ac3b-8895faed2502" SourceId="1" SourceUrl="http://localhost:60919/Services/OrderDisplayService.svc?xsd=xsd0" />
-    <MetadataFile FileName="OrderDisplayService.wsdl" MetadataType="Wsdl" ID="0585d2d4-3867-4c74-87e4-39d36f91fca1" SourceId="1" SourceUrl="http://localhost:60919/Services/OrderDisplayService.svc?wsdl" />
+    <MetadataFile FileName="OrderDisplayService.xsd" MetadataType="Schema" ID="32da5bc2-b48e-42b3-9d74-b81c2e1c98a0" SourceId="1" SourceUrl="http://localhost:60919/Services/OrderDisplayService.svc?xsd=xsd1" />
+    <MetadataFile FileName="OrderDisplayService.disco" MetadataType="Disco" ID="e476dcd5-d5d6-480b-ad0a-06c61fe2483a" SourceId="1" SourceUrl="http://localhost:60919/Services/OrderDisplayService.svc?disco" />
+    <MetadataFile FileName="OrderDisplayService1.xsd" MetadataType="Schema" ID="409e9ecd-85f0-491d-9809-d2d913bee349" SourceId="1" SourceUrl="http://localhost:60919/Services/OrderDisplayService.svc?xsd=xsd2" />
+    <MetadataFile FileName="OrderDisplayService2.xsd" MetadataType="Schema" ID="8b57dd60-45e6-4a02-b86b-0a1479c7dca6" SourceId="1" SourceUrl="http://localhost:60919/Services/OrderDisplayService.svc?xsd=xsd0" />
+    <MetadataFile FileName="OrderDisplayService.wsdl" MetadataType="Wsdl" ID="67932a7c-c075-462c-b1bd-be03db94c099" SourceId="1" SourceUrl="http://localhost:60919/Services/OrderDisplayService.svc?wsdl" />
   </Metadata>
   <Extensions>
     <ExtensionFile FileName="configuration91.svcinfo" Name="configuration91.svcinfo" />

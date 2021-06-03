@@ -21,7 +21,7 @@ namespace KaspiShop.Models
             var dto = Cart.Lines();
             foreach (var value in ProductCatalog)
             {                
-                value.Quantity -= dto.Where(x => x.ProductDTO.ProductID == value.ID && value.Location == x.LocationName)
+                value.Quantity -= dto.Where(x => x.ProductDTO.ProductID == value.ID)
                     .Select(q => q.Quantity).FirstOrDefault();
             }
         }

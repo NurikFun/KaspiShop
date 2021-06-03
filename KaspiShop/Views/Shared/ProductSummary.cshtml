@@ -21,15 +21,11 @@
     {
 <div class="pull-right">
     @Html.Hidden("productId", Model.ID)
-    @Html.Hidden("locationName", Model.Location)
     @Html.Hidden("returnUrl", Request.Url.PathAndQuery)
     <input type="submit" class="btn btn-success" value="Add to cart" />
 </div>}
 
     <span class="lead"> @Model.Description</span><br />
-    <h4>
-        <strong>Location : @Model.Location</strong>
-    </h4>
 </div>
 }
 

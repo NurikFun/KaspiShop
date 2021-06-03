@@ -11,9 +11,9 @@ namespace WCFShopService.Services
     public interface IShopCartItemService
     {
         [OperationContract]
-        void AddItem(ProductDTO product, int quantity, string locationName);
+        void AddItem(ProductDTO product, int quantity);
         [OperationContract]
-        void RemoveLine(ProductDTO product, string locationName);
+        void RemoveLine(ProductDTO product);
         [OperationContract]
         decimal ComputeTotalValue();
         [OperationContract]
@@ -29,7 +29,5 @@ namespace WCFShopService.Services
         public ProductDTO ProductDTO { get; set; }
         [DataMember]
         public int Quantity { get; set; }
-        [DataMember]
-        public string LocationName { get; set; }
     }
 }

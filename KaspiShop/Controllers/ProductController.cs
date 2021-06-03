@@ -18,14 +18,12 @@ namespace KaspiShop.Controllers
     {
         private readonly IProductCatalogService dataRepository;
         private readonly IProductPhotoService photoRepository;
-        private readonly IShopCartItemService shopCartItemService;
         public int PageSize = 4;
         public ProductController(IProductCatalogService dataRepository, IProductPhotoService photoRepository, 
             IShopCartItemService shopCartItemService)
         {
             this.dataRepository = dataRepository;
             this.photoRepository = photoRepository;
-            this.shopCartItemService = shopCartItemService;
         }
 
         public ActionResult List(ShopCartItemServiceClient cart, string category = "Clothing", string subcategory = "Caps", int page = 1)
@@ -44,7 +42,7 @@ namespace KaspiShop.Controllers
                             dataRepository.GetList().Where(x => x.SubCategory == subcategory).Count()
                 },
                 ProductCatalog = dataRepository.GetList()
-                                   .Where(x => x.SubCategory == subcategory || x.SubCategory == null)
+                                   .Where(x => x.SubCategory == subcategory || x.SubCategory == null).Distinct()
                                    .OrderBy(x => x.ID)
                                    .Skip((page - 1) * PageSize)
                                    .Take(PageSize),

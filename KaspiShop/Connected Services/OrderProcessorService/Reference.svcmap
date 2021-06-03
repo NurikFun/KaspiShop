@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ReferenceGroup xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" ID="ba73a5fa-c993-4890-9338-43bd975e48bb" xmlns="urn:schemas-microsoft-com:xml-wcfservicemap">
+<ReferenceGroup xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" ID="3534f534-35ed-4c3c-bb29-2c4b8857dd25" xmlns="urn:schemas-microsoft-com:xml-wcfservicemap">
   <ClientOptions>
     <GenerateAsynchronousMethods>false</GenerateAsynchronousMethods>
     <GenerateTaskBasedAsynchronousMethod>true</GenerateTaskBasedAsynchronousMethod>
@@ -22,11 +22,11 @@
     <MetadataSource Address="http://localhost:60919/Services/OrderProcessorService.svc" Protocol="http" SourceId="1" />
   </MetadataSources>
   <Metadata>
-    <MetadataFile FileName="OrderProcessorService.disco" MetadataType="Disco" ID="a8457f44-90b6-4cdc-a99a-8f4eceddee39" SourceId="1" SourceUrl="http://localhost:60919/Services/OrderProcessorService.svc?disco" />
-    <MetadataFile FileName="OrderProcessorService.wsdl" MetadataType="Wsdl" ID="f7046bd5-6f60-44a9-ae41-e1435ef3a72f" SourceId="1" SourceUrl="http://localhost:60919/Services/OrderProcessorService.svc?wsdl" />
-    <MetadataFile FileName="OrderProcessorService.xsd" MetadataType="Schema" ID="c5b251b7-b8e4-4013-bfc1-608614761118" SourceId="1" SourceUrl="http://localhost:60919/Services/OrderProcessorService.svc?xsd=xsd0" />
-    <MetadataFile FileName="OrderProcessorService1.xsd" MetadataType="Schema" ID="5bcc38ba-0929-4aef-9449-272e10b8f9b2" SourceId="1" SourceUrl="http://localhost:60919/Services/OrderProcessorService.svc?xsd=xsd1" />
-    <MetadataFile FileName="OrderProcessorService2.xsd" MetadataType="Schema" ID="78e28613-8683-42a8-adcd-fc1ff136812d" SourceId="1" SourceUrl="http://localhost:60919/Services/OrderProcessorService.svc?xsd=xsd2" />
+    <MetadataFile FileName="OrderProcessorService.disco" MetadataType="Disco" ID="2ead4e2a-a04f-4e94-ac28-a7824e3ca59d" SourceId="1" SourceUrl="http://localhost:60919/Services/OrderProcessorService.svc?disco" />
+    <MetadataFile FileName="OrderProcessorService.wsdl" MetadataType="Wsdl" ID="f48161c8-454a-479b-9341-519170f96c79" SourceId="1" SourceUrl="http://localhost:60919/Services/OrderProcessorService.svc?wsdl" />
+    <MetadataFile FileName="OrderProcessorService.xsd" MetadataType="Schema" ID="04ad6d03-af07-42cd-9b2c-abb2703b8fe3" SourceId="1" SourceUrl="http://localhost:60919/Services/OrderProcessorService.svc?xsd=xsd0" />
+    <MetadataFile FileName="OrderProcessorService1.xsd" MetadataType="Schema" ID="3ed64913-aadc-4c66-aa50-3866343afef2" SourceId="1" SourceUrl="http://localhost:60919/Services/OrderProcessorService.svc?xsd=xsd1" />
+    <MetadataFile FileName="OrderProcessorService2.xsd" MetadataType="Schema" ID="8693b675-3f2b-4102-9a4e-b5a4fbbc7295" SourceId="1" SourceUrl="http://localhost:60919/Services/OrderProcessorService.svc?xsd=xsd2" />
   </Metadata>
   <Extensions>
     <ExtensionFile FileName="configuration91.svcinfo" Name="configuration91.svcinfo" />

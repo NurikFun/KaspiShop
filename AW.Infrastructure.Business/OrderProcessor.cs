@@ -12,8 +12,9 @@ namespace AW.Infrastructure.Business
 {
     public class OrderProcessor : IOrderProcessor
     {
+        private INotificationSender sender = new MailSender();
 
-        public void ProcessOrder(ShopCartItem cart, ShoppingDetails shoppingDetails, int businessEntityID)
+        public void ProcessOrder(ShopCartItem cart, ShoppingDetails shoppingDetails, int businessEntityID, string email)
         {
             using (var scope = new TransactionScope())
             {
@@ -21,6 +22,7 @@ namespace AW.Infrastructure.Business
                 int workerID = MinSalesWorker(shoppingDetails.City);
                 int orderID = InsertPurchaseOrderHeader(cart, businessEntityID, shoppingDetails.Country);
                 UpdateStatus(orderID, workerID);
+                sender.SendMessage(email, "Manager assigned! Check your order page");
                 scope.Complete();
             }
         }
@@ -78,12 +80,15 @@ namespace AW.Infrastructure.Business
         }
 
 
-        private void UpdateStatus(int orderID, int workerID, byte status = 2)
+        public void UpdateStatus(int orderID, int workerID, byte status = 2)
         {
             using (AWContext context = new AWContext())
             {
                 var result = context.PurchaseOrderHeader.SingleOrDefault(o => o.PurchaseOrderID == orderID);
-                result.EmployeeID = workerID;
+                if (workerID != 0)
+                {
+                    result.EmployeeID = workerID;
+                }
                 result.Status = status;
                 result.ModifiedDate = DateTime.Now;
                 context.SaveChanges();

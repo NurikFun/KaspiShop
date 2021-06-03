@@ -247,6 +247,11 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Reference.svcmap</DependentUpon>
     </Compile>
+    <Compile Include="Connected Services\XMLService\Reference.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Compile>
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\EmployeeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
@@ -290,13 +295,13 @@
       <Generator>WCF Proxy Generator</Generator>
       <LastGenOutput>Reference.cs</LastGenOutput>
     </None>
+    <Content Include="Connected Services\OrderDisplayService\KaspiShop.OrderDisplayService.OrderDetailDTO.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
     <Content Include="Connected Services\OrderDisplayService\KaspiShop.OrderDisplayService.PurchaseOrderHeaderDTO.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </Content>
     <Content Include="Connected Services\OrderDisplayService\KaspiShop.OrderDisplayService.ShopCartLineDTO.datasource">
-      <DependentUpon>Reference.svcmap</DependentUpon>
-    </Content>
-    <Content Include="Connected Services\OrderDisplayService\KaspiShop.OrderDisplayService.OrderDetailDTO.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </Content>
     <None Include="Connected Services\OrderDisplayService\OrderDisplayService.wsdl" />
@@ -309,17 +314,17 @@
     <None Include="Connected Services\OrderDisplayService\OrderDisplayService2.xsd">
       <SubType>Designer</SubType>
     </None>
-    <None Include="Connected Services\OrderProcessorService\OrderProcessorService.disco" />
-    <None Include="Connected Services\OrderProcessorService\configuration91.svcinfo" />
-    <None Include="Connected Services\OrderProcessorService\configuration.svcinfo" />
-    <None Include="Connected Services\OrderProcessorService\Reference.svcmap">
-      <Generator>WCF Proxy Generator</Generator>
-      <LastGenOutput>Reference.cs</LastGenOutput>
-    </None>
     <None Include="Connected Services\OrderDisplayService\OrderDisplayService.disco" />
     <None Include="Connected Services\OrderDisplayService\configuration91.svcinfo" />
     <None Include="Connected Services\OrderDisplayService\configuration.svcinfo" />
     <None Include="Connected Services\OrderDisplayService\Reference.svcmap">
+      <Generator>WCF Proxy Generator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
+    <None Include="Connected Services\OrderProcessorService\OrderProcessorService.disco" />
+    <None Include="Connected Services\OrderProcessorService\configuration91.svcinfo" />
+    <None Include="Connected Services\OrderProcessorService\configuration.svcinfo" />
+    <None Include="Connected Services\OrderProcessorService\Reference.svcmap">
       <Generator>WCF Proxy Generator</Generator>
       <LastGenOutput>Reference.cs</LastGenOutput>
     </None>
@@ -413,6 +418,22 @@
     <Content Include="Connected Services\ShopCartItemService\KaspiShop.ShopCartItemService.ShopCartLineDTO.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </Content>
+    <None Include="Connected Services\ShopCartItemService\ShopCartItemService.wsdl" />
+    <None Include="Connected Services\ShopCartItemService\ShopCartItemService.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Connected Services\ShopCartItemService\ShopCartItemService1.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Connected Services\ShopCartItemService\ShopCartItemService2.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Connected Services\XMLService\configuration91.svcinfo" />
+    <None Include="Connected Services\XMLService\configuration.svcinfo" />
+    <None Include="Connected Services\XMLService\Reference.svcmap">
+      <Generator>WCF Proxy Generator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
     <None Include="Connected Services\ShopCartItemService\ShopCartItemService.disco" />
     <None Include="Connected Services\ShopCartItemService\configuration91.svcinfo" />
     <None Include="Connected Services\ShopCartItemService\configuration.svcinfo" />
@@ -474,16 +495,13 @@
     <None Include="Connected Services\SalesTerritoryService\SalesTerritoryService2.xsd">
       <SubType>Designer</SubType>
     </None>
-    <None Include="Connected Services\ShopCartItemService\ShopCartItemService.wsdl" />
-    <None Include="Connected Services\ShopCartItemService\ShopCartItemService.xsd">
+    <None Include="Connected Services\XMLService\item.xsd">
       <SubType>Designer</SubType>
     </None>
-    <None Include="Connected Services\ShopCartItemService\ShopCartItemService1.xsd">
+    <None Include="Connected Services\XMLService\item1.xsd">
       <SubType>Designer</SubType>
     </None>
-    <None Include="Connected Services\ShopCartItemService\ShopCartItemService2.xsd">
-      <SubType>Designer</SubType>
-    </None>
+    <None Include="Connected Services\XMLService\XMLService.wsdl" />
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.4.1.js" />
     <Content Include="Scripts\jquery-3.4.1.min.js" />
@@ -675,6 +693,7 @@
     <WCFMetadataStorage Include="Connected Services\ProductService\" />
     <WCFMetadataStorage Include="Connected Services\SalesTerritoryService\" />
     <WCFMetadataStorage Include="Connected Services\ShopCartItemService\" />
+    <WCFMetadataStorage Include="Connected Services\XMLService\" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

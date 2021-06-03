@@ -50,7 +50,7 @@ namespace KaspiShop.Controllers
             });
         }
 
-        public RedirectToRouteResult AddToCart(ShopCartItemServiceClient cart, int productId, string locationName, string returnUrl)
+        public RedirectToRouteResult AddToCart(ShopCartItemServiceClient cart, int productId, string returnUrl)
         {
             Factory factory = new Factory();
 
@@ -59,13 +59,13 @@ namespace KaspiShop.Controllers
 
             if (productDTO != null)
             {
-                cart.AddItem(productDTO, 1, locationName);
+                cart.AddItem(productDTO, 1);
             }
 
             return RedirectToAction("Index", new { returnUrl });
         }
 
-        public RedirectToRouteResult RemoveFromCart(ShopCartItemServiceClient cart, int productId, string locationName, string returnUrl)
+        public RedirectToRouteResult RemoveFromCart(ShopCartItemServiceClient cart, int productId, string returnUrl)
         {
             Factory factory = new Factory();
             ProductService.ProductDTO product = productService.GetProduct(productId);
@@ -74,7 +74,7 @@ namespace KaspiShop.Controllers
 
             if (productDTO != null)
             {
-                cart.RemoveLine(productDTO, locationName);
+                cart.RemoveLine(productDTO);
 
             }
             return RedirectToAction("Index", new { returnUrl });
@@ -120,9 +120,14 @@ namespace KaspiShop.Controllers
 
             if (ModelState.IsValid)
             {
-                orderService.ProcessOrder(cartLine.ToArray(), details, HttpContext.GetOwinContext()
-                .GetUserManager<ApplicationUserManager>()
-                .FindById(Convert.ToInt32(User.Identity.GetUserId())).BusinessEntityID);
+                int userID = HttpContext.GetOwinContext()
+                                .GetUserManager<ApplicationUserManager>()
+                                .FindById(Convert.ToInt32(User.Identity.GetUserId())).BusinessEntityID;
+                string email = HttpContext.GetOwinContext()
+                                .GetUserManager<ApplicationUserManager>()
+                                .FindById(Convert.ToInt32(User.Identity.GetUserId())).Email;
+
+                orderService.ProcessOrder(cartLine.ToArray(), details, userID, email);
 
                 cart.Clear();
                 return View("Completed");

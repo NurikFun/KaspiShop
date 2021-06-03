@@ -64,6 +64,9 @@ namespace KaspiShop.OrderDisplayService {
         private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private int CustomerIDField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
         private int PurchaseOrderIDField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
@@ -79,6 +82,19 @@ namespace KaspiShop.OrderDisplayService {
             }
             set {
                 this.extensionDataField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int CustomerID {
+            get {
+                return this.CustomerIDField;
+            }
+            set {
+                if ((this.CustomerIDField.Equals(value) != true)) {
+                    this.CustomerIDField = value;
+                    this.RaisePropertyChanged("CustomerID");
+                }
             }
         }
         
@@ -180,9 +196,6 @@ namespace KaspiShop.OrderDisplayService {
         private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private string LocationNameField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
         private KaspiShop.OrderDisplayService.ProductDTO ProductDTOField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
@@ -195,19 +208,6 @@ namespace KaspiShop.OrderDisplayService {
             }
             set {
                 this.extensionDataField = value;
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public string LocationName {
-            get {
-                return this.LocationNameField;
-            }
-            set {
-                if ((object.ReferenceEquals(this.LocationNameField, value) != true)) {
-                    this.LocationNameField = value;
-                    this.RaisePropertyChanged("LocationName");
-                }
             }
         }
         

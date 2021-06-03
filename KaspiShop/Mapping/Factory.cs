@@ -16,7 +16,6 @@ namespace KaspiShop.Mapping
             {
                 result.Add(new OrderProcessorService.ShopCartLineDTO
                 {
-                    LocationName = item.LocationName,
                     Quantity = item.Quantity,
                     ProductDTO = new OrderProcessorService.ProductDTO
                     {

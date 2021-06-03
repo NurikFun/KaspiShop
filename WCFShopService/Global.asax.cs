@@ -19,6 +19,8 @@ namespace WCFShopService
             kernel.Bind<IShoppingAddress>().To<ShoppingAddress>();
             kernel.Bind<IOrderProcessor>().To<OrderProcessor>();
             kernel.Bind<IOrderDisplay>().To<OrderDisplay>();
+            kernel.Bind<INotificationSender>().To<MailSender>();
+
             return kernel;
         }
     }

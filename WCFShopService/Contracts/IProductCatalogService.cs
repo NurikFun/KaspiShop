@@ -30,8 +30,6 @@ namespace WCFShopService.Services
         [DataMember]
         public int Quantity { get; set; }
         [DataMember]
-        public string Location { get; set; }
-        [DataMember]
         public string SubCategory { get; set; }
         [DataMember]
         public int PhotoID { get; set; }

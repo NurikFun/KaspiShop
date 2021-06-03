@@ -78,6 +78,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="CustomDTO\OrderDetail.cs" />
+    <Compile Include="CustomDTO\OrderXMLDetail.cs" />
     <Compile Include="CustomDTO\ProductCatalog.cs" />
     <Compile Include="CustomDTO\ShopCartItem.cs" />
     <Compile Include="CustomDTO\ShoppingDetails.cs" />

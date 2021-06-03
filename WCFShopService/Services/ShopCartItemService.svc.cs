@@ -11,10 +11,10 @@ namespace WCFShopService.Services
     public class ShopCartItemService : IShopCartItemService
     {
         private List<ShopCartLineDTO> lineCollection = new List<ShopCartLineDTO>();
-        public void AddItem(ProductDTO product, int quantity, string locationName)
+        public void AddItem(ProductDTO product, int quantity)
         {
             ShopCartLineDTO line = lineCollection
-                .Where(p => p.ProductDTO.ProductID == product.ProductID && p.LocationName == locationName)
+                .Where(p => p.ProductDTO.ProductID == product.ProductID)
                 .FirstOrDefault();
 
             if (line == null)
@@ -22,8 +22,7 @@ namespace WCFShopService.Services
                 lineCollection.Add(new ShopCartLineDTO
                 {
                     ProductDTO = product,
-                    Quantity = quantity,
-                    LocationName = locationName
+                    Quantity = quantity
                 });
             }
             else
@@ -41,9 +40,9 @@ namespace WCFShopService.Services
             return lineCollection.Sum(x => x.Quantity * x.ProductDTO.ListPrice);
         }
 
-        public void RemoveLine(ProductDTO product, string locationName)
+        public void RemoveLine(ProductDTO product)
         {
-            lineCollection.RemoveAll(x => x.ProductDTO.ProductID == product.ProductID && x.LocationName == locationName);
+            lineCollection.RemoveAll(x => x.ProductDTO.ProductID == product.ProductID);
         }
         public IEnumerable<ShopCartLineDTO> Lines()
         {

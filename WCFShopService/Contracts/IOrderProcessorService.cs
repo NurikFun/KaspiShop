@@ -11,7 +11,11 @@ namespace WCFShopService.Services
     public interface IOrderProcessorService
     {
         [OperationContract]
-        void ProcessOrder(List<ShopCartLineDTO> cart, ShoppingDetailsDTO shoppingDetails, int businessEntityID);
+        void ProcessOrder(List<ShopCartLineDTO> cart, ShoppingDetailsDTO shoppingDetails, int businessEntityID, string email);
+
+        [OperationContract]
+        void MessageQueueProcess();
+
     }
 
 }

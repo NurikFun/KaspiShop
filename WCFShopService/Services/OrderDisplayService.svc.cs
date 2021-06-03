@@ -44,8 +44,6 @@ namespace WCFShopService.Services
             var orders = orderRepo.GetCustomerOrder(employeeID);
 
             List<OrderDetailDTO> result = new List<OrderDetailDTO>();
-
-
             foreach (var order in orders)
             {
                 result.Add(new OrderDetailDTO
@@ -54,7 +52,8 @@ namespace WCFShopService.Services
                     AddressLine = order.AddressLine,
                     SubTotal = order.SubTotal,
                     TotalDue = order.TotalDue,
-                    PurchaseOrderID = order.PurchaseID
+                    PurchaseOrderID = order.PurchaseID,
+                    CustomerID = order.CustomerID
                 });
             }
 

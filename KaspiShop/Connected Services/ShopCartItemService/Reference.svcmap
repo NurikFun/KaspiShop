@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ReferenceGroup xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" ID="99cf3805-e259-4521-9603-d8fc7904bfdc" xmlns="urn:schemas-microsoft-com:xml-wcfservicemap">
+<ReferenceGroup xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" ID="dfd2941b-0eaf-46f8-8a83-a0a895e54089" xmlns="urn:schemas-microsoft-com:xml-wcfservicemap">
   <ClientOptions>
     <GenerateAsynchronousMethods>false</GenerateAsynchronousMethods>
     <GenerateTaskBasedAsynchronousMethod>true</GenerateTaskBasedAsynchronousMethod>
@@ -22,11 +22,11 @@
     <MetadataSource Address="http://localhost:60919/Services/ShopCartItemService.svc" Protocol="http" SourceId="1" />
   </MetadataSources>
   <Metadata>
-    <MetadataFile FileName="ShopCartItemService.xsd" MetadataType="Schema" ID="ac4efe5a-3d22-4651-9577-ee209efcc72d" SourceId="1" SourceUrl="http://localhost:60919/Services/ShopCartItemService.svc?xsd=xsd2" />
-    <MetadataFile FileName="ShopCartItemService.disco" MetadataType="Disco" ID="ab629056-7db3-4f55-9c2f-a427950b71df" SourceId="1" SourceUrl="http://localhost:60919/Services/ShopCartItemService.svc?disco" />
-    <MetadataFile FileName="ShopCartItemService1.xsd" MetadataType="Schema" ID="4d5075fd-fe7d-4b43-95a9-c97b9ff66703" SourceId="1" SourceUrl="http://localhost:60919/Services/ShopCartItemService.svc?xsd=xsd1" />
-    <MetadataFile FileName="ShopCartItemService.wsdl" MetadataType="Wsdl" ID="1b557dfe-e0f9-48a8-bec1-0489d26c9902" SourceId="1" SourceUrl="http://localhost:60919/Services/ShopCartItemService.svc?wsdl" />
-    <MetadataFile FileName="ShopCartItemService2.xsd" MetadataType="Schema" ID="ff2af552-c749-49fb-a003-ab842653bee6" SourceId="1" SourceUrl="http://localhost:60919/Services/ShopCartItemService.svc?xsd=xsd0" />
+    <MetadataFile FileName="ShopCartItemService.xsd" MetadataType="Schema" ID="4cbd5e20-2578-4ba9-acb0-bdb34f1348c6" SourceId="1" SourceUrl="http://localhost:60919/Services/ShopCartItemService.svc?xsd=xsd2" />
+    <MetadataFile FileName="ShopCartItemService.disco" MetadataType="Disco" ID="d6d9b177-7a28-4916-98fb-284b61b681b6" SourceId="1" SourceUrl="http://localhost:60919/Services/ShopCartItemService.svc?disco" />
+    <MetadataFile FileName="ShopCartItemService1.xsd" MetadataType="Schema" ID="74339569-984a-4373-898a-fac8776ecef2" SourceId="1" SourceUrl="http://localhost:60919/Services/ShopCartItemService.svc?xsd=xsd1" />
+    <MetadataFile FileName="ShopCartItemService.wsdl" MetadataType="Wsdl" ID="4c0995b6-a9e3-4016-afd4-a9b7177b6c7c" SourceId="1" SourceUrl="http://localhost:60919/Services/ShopCartItemService.svc?wsdl" />
+    <MetadataFile FileName="ShopCartItemService2.xsd" MetadataType="Schema" ID="9efcfd60-a19c-4416-baaa-186574f8fabf" SourceId="1" SourceUrl="http://localhost:60919/Services/ShopCartItemService.svc?xsd=xsd0" />
   </Metadata>
   <Extensions>
     <ExtensionFile FileName="configuration91.svcinfo" Name="configuration91.svcinfo" />

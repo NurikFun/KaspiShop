@@ -42,6 +42,8 @@ namespace KaspiShop.Util
             kernel.Bind<CustomerAddressService.ICustomerAddressService>().To<CustomerAddressService.CustomerAddressServiceClient>();
             kernel.Bind<OrderProcessorService.IOrderProcessorService>().To<OrderProcessorService.OrderProcessorServiceClient>();
             kernel.Bind<OrderDisplayService.IOrderDisplayService>().To<OrderDisplayService.OrderDisplayServiceClient>();
+            kernel.Bind<XMLService.IXMLService>().To<XMLService.XMLServiceClient>();
+
         }
     }
 }

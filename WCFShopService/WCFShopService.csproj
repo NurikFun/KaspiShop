@@ -65,6 +65,7 @@
     </Reference>
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Data.Services" />
+    <Reference Include="System.Messaging" />
     <Reference Include="System.ServiceModel.Activation" />
     <Reference Include="System.Web.DynamicData" />
     <Reference Include="System.Web.Entity" />
@@ -95,7 +96,6 @@
     <Content Include="Services\ProductService.svc" />
     <Content Include="Services\SalesTerritoryService.svc" />
     <Content Include="Services\ShopCartItemService.svc" />
-    <Content Include="Services\TestMQ.svc" />
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
@@ -114,7 +114,6 @@
     </Compile>
     <Compile Include="Contracts\ICustomerAddressService.cs" />
     <Compile Include="Contracts\IOrderProcessorService.cs" />
-    <Compile Include="Contracts\ITestMQ.cs" />
     <Compile Include="Contracts\IOrderDisplayService.cs" />
     <Compile Include="Services\OrderDisplayService.svc.cs">
       <DependentUpon>OrderDisplayService.svc</DependentUpon>
@@ -139,9 +138,6 @@
     </Compile>
     <Compile Include="Services\ShopCartItemService.svc.cs">
       <DependentUpon>ShopCartItemService.svc</DependentUpon>
-    </Compile>
-    <Compile Include="Services\TestMQ.svc.cs">
-      <DependentUpon>TestMQ.svc</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>

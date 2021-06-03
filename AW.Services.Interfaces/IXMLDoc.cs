@@ -3,12 +3,13 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Xml.Linq;
 
 namespace AW.Services.Interfaces
 {
-    public interface IXMLDoc
+    public interface IXMLUtility
     {
-        void Create(); // Customer, Address and so on
+        XDocument Create(int purchaseID, string email); 
 
     }
 }

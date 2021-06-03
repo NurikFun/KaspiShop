@@ -14,7 +14,6 @@
         <tr>
             <th>Quantity</th>
             <th>Item</th>
-            <th>Location</th>
             <th class="text-right">Price</th>
             <th class="text-right">Subtotal</th>
         </tr>
@@ -27,7 +26,6 @@
 
     <td class="text-center">@line.Quantity</td>
     <td class="text-left">@line.ProductDTO.Name</td>
-    <td class="text-left">@line.LocationName</td>
     <td class="text-right">@line.ProductDTO.ListPrice$</td>
     <td class="text-right">
         @(line.Quantity * line.ProductDTO.ListPrice)$
@@ -36,7 +34,6 @@
         @using (Html.BeginForm("RemoveFromCart", "ShopCart"))
         {
             
-            @Html.Hidden("locationName", line.LocationName)
             @Html.Hidden("ProductId", line.ProductDTO.ProductID)
             @Html.HiddenFor(x => x.ReturnUrl)
             <input class="btn btn-sm btn-warning" type="submit" value="Remove" />                            

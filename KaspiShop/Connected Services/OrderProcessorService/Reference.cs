@@ -23,9 +23,6 @@ namespace KaspiShop.OrderProcessorService {
         private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private string LocationNameField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
         private KaspiShop.OrderProcessorService.ProductDTO ProductDTOField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
@@ -38,19 +35,6 @@ namespace KaspiShop.OrderProcessorService {
             }
             set {
                 this.extensionDataField = value;
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public string LocationName {
-            get {
-                return this.LocationNameField;
-            }
-            set {
-                if ((object.ReferenceEquals(this.LocationNameField, value) != true)) {
-                    this.LocationNameField = value;
-                    this.RaisePropertyChanged("LocationName");
-                }
             }
         }
         
@@ -265,10 +249,16 @@ namespace KaspiShop.OrderProcessorService {
     public interface IOrderProcessorService {
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IOrderProcessorService/ProcessOrder", ReplyAction="http://tempuri.org/IOrderProcessorService/ProcessOrderResponse")]
-        void ProcessOrder(KaspiShop.OrderProcessorService.ShopCartLineDTO[] cart, KaspiShop.OrderProcessorService.ShoppingDetailsDTO shoppingDetails, int businessEntityID);
+        void ProcessOrder(KaspiShop.OrderProcessorService.ShopCartLineDTO[] cart, KaspiShop.OrderProcessorService.ShoppingDetailsDTO shoppingDetails, int businessEntityID, string email);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IOrderProcessorService/ProcessOrder", ReplyAction="http://tempuri.org/IOrderProcessorService/ProcessOrderResponse")]
-        System.Threading.Tasks.Task ProcessOrderAsync(KaspiShop.OrderProcessorService.ShopCartLineDTO[] cart, KaspiShop.OrderProcessorService.ShoppingDetailsDTO shoppingDetails, int businessEntityID);
+        System.Threading.Tasks.Task ProcessOrderAsync(KaspiShop.OrderProcessorService.ShopCartLineDTO[] cart, KaspiShop.OrderProcessorService.ShoppingDetailsDTO shoppingDetails, int businessEntityID, string email);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IOrderProcessorService/MessageQueueProcess", ReplyAction="http://tempuri.org/IOrderProcessorService/MessageQueueProcessResponse")]
+        void MessageQueueProcess();
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IOrderProcessorService/MessageQueueProcess", ReplyAction="http://tempuri.org/IOrderProcessorService/MessageQueueProcessResponse")]
+        System.Threading.Tasks.Task MessageQueueProcessAsync();
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
@@ -298,12 +288,20 @@ namespace KaspiShop.OrderProcessorService {
                 base(binding, remoteAddress) {
         }
         
-        public void ProcessOrder(KaspiShop.OrderProcessorService.ShopCartLineDTO[] cart, KaspiShop.OrderProcessorService.ShoppingDetailsDTO shoppingDetails, int businessEntityID) {
-            base.Channel.ProcessOrder(cart, shoppingDetails, businessEntityID);
+        public void ProcessOrder(KaspiShop.OrderProcessorService.ShopCartLineDTO[] cart, KaspiShop.OrderProcessorService.ShoppingDetailsDTO shoppingDetails, int businessEntityID, string email) {
+            base.Channel.ProcessOrder(cart, shoppingDetails, businessEntityID, email);
         }
         
-        public System.Threading.Tasks.Task ProcessOrderAsync(KaspiShop.OrderProcessorService.ShopCartLineDTO[] cart, KaspiShop.OrderProcessorService.ShoppingDetailsDTO shoppingDetails, int businessEntityID) {
-            return base.Channel.ProcessOrderAsync(cart, shoppingDetails, businessEntityID);
+        public System.Threading.Tasks.Task ProcessOrderAsync(KaspiShop.OrderProcessorService.ShopCartLineDTO[] cart, KaspiShop.OrderProcessorService.ShoppingDetailsDTO shoppingDetails, int businessEntityID, string email) {
+            return base.Channel.ProcessOrderAsync(cart, shoppingDetails, businessEntityID, email);
+        }
+        
+        public void MessageQueueProcess() {
+            base.Channel.MessageQueueProcess();
+        }
+        
+        public System.Threading.Tasks.Task MessageQueueProcessAsync() {
+            return base.Channel.MessageQueueProcessAsync();
         }
     }
 }

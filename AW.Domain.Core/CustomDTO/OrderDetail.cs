@@ -8,6 +8,7 @@ namespace AW.Domain.Core.CustomDTO
 {
     public class OrderDetail
     {
+        public int CustomerID { get; set; }
         public int PurchaseID { get; set; }
         public string City { get; set; }
         public string AddressLine { get; set; }

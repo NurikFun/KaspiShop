@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ReferenceGroup xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" ID="c9563265-e7af-4e50-bf3c-3e2cdf555006" xmlns="urn:schemas-microsoft-com:xml-wcfservicemap">
+  <ClientOptions>
+    <GenerateAsynchronousMethods>false</GenerateAsynchronousMethods>
+    <GenerateTaskBasedAsynchronousMethod>true</GenerateTaskBasedAsynchronousMethod>
+    <EnableDataBinding>true</EnableDataBinding>
+    <ExcludedTypes />
+    <ImportXmlTypes>false</ImportXmlTypes>
+    <GenerateInternalTypes>false</GenerateInternalTypes>
+    <GenerateMessageContracts>false</GenerateMessageContracts>
+    <NamespaceMappings />
+    <CollectionMappings />
+    <GenerateSerializableTypes>true</GenerateSerializableTypes>
+    <Serializer>Auto</Serializer>
+    <UseSerializerForFaults>true</UseSerializerForFaults>
+    <ReferenceAllAssemblies>true</ReferenceAllAssemblies>
+    <ReferencedAssemblies />
+    <ReferencedDataContractTypes />
+    <ServiceContractMappings />
+  </ClientOptions>
+  <MetadataSources>
+    <MetadataSource Address="http://localhost:60919/Services/OrderProcessorService.svc" Protocol="http" SourceId="1" />
+  </MetadataSources>
+  <Metadata>
+    <MetadataFile FileName="OrderProcessorService.disco" MetadataType="Disco" ID="f74f3f15-add6-47d8-916e-d7037799e6f5" SourceId="1" SourceUrl="http://localhost:60919/Services/OrderProcessorService.svc?disco" />
+    <MetadataFile FileName="OrderProcessorService.wsdl" MetadataType="Wsdl" ID="b910dbfd-c799-4b77-af74-2da8a32272b8" SourceId="1" SourceUrl="http://localhost:60919/Services/OrderProcessorService.svc?wsdl" />
+    <MetadataFile FileName="OrderProcessorService.xsd" MetadataType="Schema" ID="7ed3b570-b8f0-444c-8579-55226621ae32" SourceId="1" SourceUrl="http://localhost:60919/Services/OrderProcessorService.svc?xsd=xsd0" />
+    <MetadataFile FileName="OrderProcessorService1.xsd" MetadataType="Schema" ID="e99a67c6-1bf7-415e-8214-fa5fae0a5d12" SourceId="1" SourceUrl="http://localhost:60919/Services/OrderProcessorService.svc?xsd=xsd1" />
+    <MetadataFile FileName="OrderProcessorService2.xsd" MetadataType="Schema" ID="e845de44-48f2-4bbe-8ce9-9ce22ec97e0d" SourceId="1" SourceUrl="http://localhost:60919/Services/OrderProcessorService.svc?xsd=xsd2" />
+  </Metadata>
+  <Extensions>
+    <ExtensionFile FileName="configuration91.svcinfo" Name="configuration91.svcinfo" />
+    <ExtensionFile FileName="configuration.svcinfo" Name="configuration.svcinfo" />
+  </Extensions>
+</ReferenceGroup>

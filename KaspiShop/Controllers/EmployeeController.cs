@@ -1,4 +1,7 @@
-﻿using KaspiShop.OrderDisplayService;
+﻿using KaspiShop.Models;
+using KaspiShop.OrderDisplayService;
+using KaspiShop.OrderProcessorService;
+using KaspiShop.XMLService;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.Owin;
 using System;
@@ -12,13 +15,16 @@ namespace KaspiShop.Controllers
     [Authorize(Roles = "Employee")]
     public class EmployeeController : Controller
     {
-
         private readonly IOrderDisplayService orderDisplay;
-        public EmployeeController(IOrderDisplayService orderDisplay)
+        private readonly IXMLService xmlRepo;
+        private readonly IOrderProcessorService orderProcessor;
+        public EmployeeController(IOrderDisplayService orderDisplay, IXMLService xmlRepo, IOrderProcessorService orderProcessor)
         {
             this.orderDisplay = orderDisplay;
+            this.xmlRepo = xmlRepo;
+            this.orderProcessor = orderProcessor;
         }
-        // GET: Employee
+
         public ActionResult OrderHeader()
         {
             int id = HttpContext.GetOwinContext()
@@ -31,10 +37,18 @@ namespace KaspiShop.Controllers
         }
 
         [HttpPost]
-        public ActionResult OrderHeader(int purchaseID)
+        public ActionResult OrderHeader(int purchaseID, int customerID)
         {
-            ViewBag.Temp = "OK";
-            return View();
+            int id = HttpContext.GetOwinContext()
+                  .GetUserManager<ApplicationUserManager>()
+                  .FindById(Convert.ToInt32(User.Identity.GetUserId())).BusinessEntityID;
+            string email = HttpContext.GetOwinContext()
+                  .GetUserManager<ApplicationUserManager>().Users.Where(x => x.BusinessEntityID == customerID).Select(a => a.Email).FirstOrDefault();
+
+
+            xmlRepo.CreateXML(purchaseID, email);
+
+            return RedirectToAction("OrderHeader");
         }
 
     }

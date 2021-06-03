@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ReferenceGroup xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" ID="b0ffade9-8a6b-43a2-9365-337a682cdbe6" xmlns="urn:schemas-microsoft-com:xml-wcfservicemap">
+<ReferenceGroup xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" ID="e26b39d1-030e-413c-900e-85f6cc5bff36" xmlns="urn:schemas-microsoft-com:xml-wcfservicemap">
   <ClientOptions>
     <GenerateAsynchronousMethods>false</GenerateAsynchronousMethods>
     <GenerateTaskBasedAsynchronousMethod>true</GenerateTaskBasedAsynchronousMethod>
@@ -19,13 +19,12 @@
     <ServiceContractMappings />
   </ClientOptions>
   <MetadataSources>
-    <MetadataSource Address="http://localhost/TestMQ/Services/TestMQ.svc" Protocol="http" SourceId="1" />
+    <MetadataSource Address="http://localhost:9000/?wsdl" Protocol="http" SourceId="1" />
   </MetadataSources>
   <Metadata>
-    <MetadataFile FileName="TestMQ.xsd" MetadataType="Schema" ID="b363e5d5-32fc-466b-8df5-47ada54a2270" SourceId="1" SourceUrl="http://localhost/TestMQ/Services/TestMQ.svc?xsd=xsd0" />
-    <MetadataFile FileName="TestMQ.disco" MetadataType="Disco" ID="70992608-6c9c-41f2-9519-306dd2debb03" SourceId="1" SourceUrl="http://localhost/TestMQ/Services/TestMQ.svc?disco" />
-    <MetadataFile FileName="TestMQ.wsdl" MetadataType="Wsdl" ID="4cb0c8d3-0614-4258-a3d2-e279bd9b19bd" SourceId="1" SourceUrl="http://localhost/TestMQ/Services/TestMQ.svc?wsdl" />
-    <MetadataFile FileName="TestMQ1.xsd" MetadataType="Schema" ID="2aaddb6e-b4b5-4638-b598-65124053b821" SourceId="1" SourceUrl="http://localhost/TestMQ/Services/TestMQ.svc?xsd=xsd1" />
+    <MetadataFile FileName="XMLService.wsdl" MetadataType="Wsdl" ID="6a01ed31-28ee-4ad4-b7a9-4cf79f51a367" SourceId="1" SourceUrl="http://localhost:9000/?wsdl" />
+    <MetadataFile FileName="item.xsd" MetadataType="Schema" ID="4ff897a1-8298-4619-a344-a02abe596718" SourceId="1" SourceUrl="http://localhost:9000/?xsd=xsd1" />
+    <MetadataFile FileName="item1.xsd" MetadataType="Schema" ID="425938b8-eb14-4c11-bbb3-6e9b69586d6d" SourceId="1" SourceUrl="http://localhost:9000/?xsd=xsd0" />
   </Metadata>
   <Extensions>
     <ExtensionFile FileName="configuration91.svcinfo" Name="configuration91.svcinfo" />

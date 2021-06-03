@@ -100,9 +100,6 @@ namespace KaspiShop.ShopCartItemService {
         private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private string LocationNameField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
         private KaspiShop.ShopCartItemService.ProductDTO ProductDTOField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
@@ -115,19 +112,6 @@ namespace KaspiShop.ShopCartItemService {
             }
             set {
                 this.extensionDataField = value;
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public string LocationName {
-            get {
-                return this.LocationNameField;
-            }
-            set {
-                if ((object.ReferenceEquals(this.LocationNameField, value) != true)) {
-                    this.LocationNameField = value;
-                    this.RaisePropertyChanged("LocationName");
-                }
             }
         }
         
@@ -172,16 +156,16 @@ namespace KaspiShop.ShopCartItemService {
     public interface IShopCartItemService {
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IShopCartItemService/AddItem", ReplyAction="http://tempuri.org/IShopCartItemService/AddItemResponse")]
-        void AddItem(KaspiShop.ShopCartItemService.ProductDTO product, int quantity, string locationName);
+        void AddItem(KaspiShop.ShopCartItemService.ProductDTO product, int quantity);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IShopCartItemService/AddItem", ReplyAction="http://tempuri.org/IShopCartItemService/AddItemResponse")]
-        System.Threading.Tasks.Task AddItemAsync(KaspiShop.ShopCartItemService.ProductDTO product, int quantity, string locationName);
+        System.Threading.Tasks.Task AddItemAsync(KaspiShop.ShopCartItemService.ProductDTO product, int quantity);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IShopCartItemService/RemoveLine", ReplyAction="http://tempuri.org/IShopCartItemService/RemoveLineResponse")]
-        void RemoveLine(KaspiShop.ShopCartItemService.ProductDTO product, string locationName);
+        void RemoveLine(KaspiShop.ShopCartItemService.ProductDTO product);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IShopCartItemService/RemoveLine", ReplyAction="http://tempuri.org/IShopCartItemService/RemoveLineResponse")]
-        System.Threading.Tasks.Task RemoveLineAsync(KaspiShop.ShopCartItemService.ProductDTO product, string locationName);
+        System.Threading.Tasks.Task RemoveLineAsync(KaspiShop.ShopCartItemService.ProductDTO product);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IShopCartItemService/ComputeTotalValue", ReplyAction="http://tempuri.org/IShopCartItemService/ComputeTotalValueResponse")]
         decimal ComputeTotalValue();
@@ -229,20 +213,20 @@ namespace KaspiShop.ShopCartItemService {
                 base(binding, remoteAddress) {
         }
         
-        public void AddItem(KaspiShop.ShopCartItemService.ProductDTO product, int quantity, string locationName) {
-            base.Channel.AddItem(product, quantity, locationName);
+        public void AddItem(KaspiShop.ShopCartItemService.ProductDTO product, int quantity) {
+            base.Channel.AddItem(product, quantity);
         }
         
-        public System.Threading.Tasks.Task AddItemAsync(KaspiShop.ShopCartItemService.ProductDTO product, int quantity, string locationName) {
-            return base.Channel.AddItemAsync(product, quantity, locationName);
+        public System.Threading.Tasks.Task AddItemAsync(KaspiShop.ShopCartItemService.ProductDTO product, int quantity) {
+            return base.Channel.AddItemAsync(product, quantity);
         }
         
-        public void RemoveLine(KaspiShop.ShopCartItemService.ProductDTO product, string locationName) {
-            base.Channel.RemoveLine(product, locationName);
+        public void RemoveLine(KaspiShop.ShopCartItemService.ProductDTO product) {
+            base.Channel.RemoveLine(product);
         }
         
-        public System.Threading.Tasks.Task RemoveLineAsync(KaspiShop.ShopCartItemService.ProductDTO product, string locationName) {
-            return base.Channel.RemoveLineAsync(product, locationName);
+        public System.Threading.Tasks.Task RemoveLineAsync(KaspiShop.ShopCartItemService.ProductDTO product) {
+            return base.Channel.RemoveLineAsync(product);
         }
         
         public decimal ComputeTotalValue() {
