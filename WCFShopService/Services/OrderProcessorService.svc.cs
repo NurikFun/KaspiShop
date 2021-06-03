@@ -21,9 +21,15 @@ namespace WCFShopService.Services
         public void MessageQueueProcess()
         {
             MessageQueue mq = new MessageQueue(".\\Private$\\shippingorder");
-            Message[] msgs = mq.GetAllMessages();
+            var msgEnumerator = mq.GetMessageEnumerator2();
+            var messages = new List<Message>();
 
-            foreach (var msg in msgs)
+            while (msgEnumerator.MoveNext(new TimeSpan(0, 0, 1)))
+            {
+                var msg = mq.ReceiveById(msgEnumerator.Current.Id, new TimeSpan(0, 0, 1));
+                messages.Add(msg);
+            }
+            foreach (var msg in messages)
             {
                 msg.Formatter = new XmlMessageFormatter(new Type[] { typeof(string) });
 
