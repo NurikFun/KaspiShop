@@ -20,10 +20,14 @@ namespace WCFMSMQ
     {
         static void Main(string[] args)
         {
+
             ServiceHost host = new ServiceHost(typeof(XMLService));
             host.Open();
+
+
             Console.WriteLine("Service is ready");
             Console.ReadLine();
+
         }
     }
 }

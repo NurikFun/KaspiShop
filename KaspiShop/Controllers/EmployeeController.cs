@@ -7,6 +7,7 @@ using Microsoft.AspNet.Identity.Owin;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
 
@@ -47,7 +48,13 @@ namespace KaspiShop.Controllers
 
             xmlRepo.CreateXML(purchaseID, email);
 
-            return RedirectToAction("OrderHeader");
+            return RedirectToAction("Completed");
+        }
+
+
+        public ActionResult Completed()
+        {
+            return View();
         }
 
     }

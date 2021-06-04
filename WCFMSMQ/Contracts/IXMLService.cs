@@ -5,6 +5,7 @@ using System.Runtime.Serialization;
 using System.ServiceModel;
 using System.ServiceModel.MsmqIntegration;
 using System.Text;
+using System.Threading.Tasks;
 
 namespace WCFMSMQ
 {

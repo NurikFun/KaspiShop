@@ -9,6 +9,7 @@ using System.Runtime.Serialization;
 using System.ServiceModel;
 using System.ServiceModel.MsmqIntegration;
 using System.Text;
+using System.Threading.Tasks;
 using System.Xml.Linq;
 
 namespace WCFMSMQ
@@ -39,6 +40,7 @@ namespace WCFMSMQ
                 mq = new MessageQueue(mq.Path);
             }
             mq.Send(result);
+
         }
 
 

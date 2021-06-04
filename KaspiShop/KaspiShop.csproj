@@ -428,16 +428,16 @@
     <None Include="Connected Services\ShopCartItemService\ShopCartItemService2.xsd">
       <SubType>Designer</SubType>
     </None>
-    <None Include="Connected Services\XMLService\configuration91.svcinfo" />
-    <None Include="Connected Services\XMLService\configuration.svcinfo" />
-    <None Include="Connected Services\XMLService\Reference.svcmap">
-      <Generator>WCF Proxy Generator</Generator>
-      <LastGenOutput>Reference.cs</LastGenOutput>
-    </None>
     <None Include="Connected Services\ShopCartItemService\ShopCartItemService.disco" />
     <None Include="Connected Services\ShopCartItemService\configuration91.svcinfo" />
     <None Include="Connected Services\ShopCartItemService\configuration.svcinfo" />
     <None Include="Connected Services\ShopCartItemService\Reference.svcmap">
+      <Generator>WCF Proxy Generator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
+    <None Include="Connected Services\XMLService\configuration91.svcinfo" />
+    <None Include="Connected Services\XMLService\configuration.svcinfo" />
+    <None Include="Connected Services\XMLService\Reference.svcmap">
       <Generator>WCF Proxy Generator</Generator>
       <LastGenOutput>Reference.cs</LastGenOutput>
     </None>
@@ -636,6 +636,7 @@
     <Content Include="Views\Order\PurchaseDetail.cshtml" />
     <Content Include="Views\Employee\OrderHeader.cshtml" />
     <Content Include="Views\Shared\ProductSearch.cshtml" />
+    <Content Include="Views\Employee\Completed.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

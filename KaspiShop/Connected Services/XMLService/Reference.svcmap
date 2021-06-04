@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ReferenceGroup xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" ID="e26b39d1-030e-413c-900e-85f6cc5bff36" xmlns="urn:schemas-microsoft-com:xml-wcfservicemap">
+<ReferenceGroup xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" ID="846180ad-679f-4452-b01d-43b55f9e3c1c" xmlns="urn:schemas-microsoft-com:xml-wcfservicemap">
   <ClientOptions>
     <GenerateAsynchronousMethods>false</GenerateAsynchronousMethods>
     <GenerateTaskBasedAsynchronousMethod>true</GenerateTaskBasedAsynchronousMethod>
@@ -22,9 +22,9 @@
     <MetadataSource Address="http://localhost:9000/?wsdl" Protocol="http" SourceId="1" />
   </MetadataSources>
   <Metadata>
-    <MetadataFile FileName="XMLService.wsdl" MetadataType="Wsdl" ID="6a01ed31-28ee-4ad4-b7a9-4cf79f51a367" SourceId="1" SourceUrl="http://localhost:9000/?wsdl" />
-    <MetadataFile FileName="item.xsd" MetadataType="Schema" ID="4ff897a1-8298-4619-a344-a02abe596718" SourceId="1" SourceUrl="http://localhost:9000/?xsd=xsd1" />
-    <MetadataFile FileName="item1.xsd" MetadataType="Schema" ID="425938b8-eb14-4c11-bbb3-6e9b69586d6d" SourceId="1" SourceUrl="http://localhost:9000/?xsd=xsd0" />
+    <MetadataFile FileName="XMLService.wsdl" MetadataType="Wsdl" ID="dc7396a1-2259-4a86-a3f3-90ea9c616c3c" SourceId="1" SourceUrl="http://localhost:9000/?wsdl" />
+    <MetadataFile FileName="item.xsd" MetadataType="Schema" ID="0466c80d-da50-4883-95a7-7d6d29748549" SourceId="1" SourceUrl="http://localhost:9000/?xsd=xsd1" />
+    <MetadataFile FileName="item1.xsd" MetadataType="Schema" ID="8030fc73-5742-4c3c-930b-45b72ec274ee" SourceId="1" SourceUrl="http://localhost:9000/?xsd=xsd0" />
   </Metadata>
   <Extensions>
     <ExtensionFile FileName="configuration91.svcinfo" Name="configuration91.svcinfo" />
