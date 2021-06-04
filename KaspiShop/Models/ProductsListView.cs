@@ -13,6 +13,8 @@ namespace KaspiShop.Models
         public PagingInfo PagingInfo { get; set; }
         public string CurrentCategory { get; set; }
         public string SubCategory { get; set; }
+        public string ProductName { get; set; }
+
         public IEnumerable<ProductCatalogDTO> ProductCatalog { get; set; }
         public ShopCartItemServiceClient Cart { get; set; }
 

@@ -76,7 +76,8 @@ namespace AW.Infrastructure.Business
                                 AddressLine = ads.AddressLine1,
                                 City = ads.City,
                                 PurchaseID = po.PurchaseOrderID,
-                                TotalDue = po.TotalDue
+                                TotalDue = po.TotalDue,
+                                SubTotal = po.SubTotal
                             },
                             EmployeeID = po.EmployeeID,
                             FirstName = per.FirstName,
@@ -99,6 +100,7 @@ namespace AW.Infrastructure.Business
                         }
                     );
                 result.OrderLine = subOrder.ToList();
+                UpdateSalesData(result.OrderDetail.SubTotal, purchaseID);
                 UpdateOrder(result.OrderLine, purchaseID);
                 return result;
             }
@@ -119,6 +121,18 @@ namespace AW.Infrastructure.Business
                 context.SaveChanges();
             }
         }
+
+        private void UpdateSalesData(decimal saleSum, int purchaseID)
+        {
+            using (var context = new AWContext())
+            {
+                var employeeID = context.PurchaseOrderHeader.Where(x => x.PurchaseOrderID == purchaseID).Select(x => x.EmployeeID).FirstOrDefault();
+                var result = context.SalesPerson.Where(x => x.BusinessEntityID == employeeID).FirstOrDefault();
+                result.SalesYTD += saleSum;
+                context.SaveChanges();
+            }
+        }
+
 
     }
 }

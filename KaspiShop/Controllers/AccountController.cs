@@ -85,7 +85,7 @@ namespace KaspiShop.Controllers
                 await SignInManager.PasswordSignInAsync(model.Email, model.Password, model.RememberMe, shouldLockout: false);
                 if (UserManager.IsInRole(user.Id, "Customer"))
                 {
-                    return RedirectToAction("List", "Product");
+                    return RedirectToAction("PurchaseHeader", "Order");
                 }
                 else
                 {

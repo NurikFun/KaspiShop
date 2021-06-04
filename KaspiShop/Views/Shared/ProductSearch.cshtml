@@ -1,0 +1,8 @@
+﻿
+@using (Html.BeginForm("List", "Product"))
+{
+    <div class="input-group" style="margin-bottom: 20px;">
+        @Html.TextBox("name", null, new { @class = "form-control", @placeholder = "Search product", @style = "display: inline-block; width: 75%;"})
+        <input type="submit" value="Find" class="btn btn-default" />
+    </div>
+}

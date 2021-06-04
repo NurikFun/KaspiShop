@@ -26,31 +26,34 @@ namespace KaspiShop.Controllers
             this.photoRepository = photoRepository;
         }
 
-        public ActionResult List(ShopCartItemServiceClient cart, string category = "Clothing", string subcategory = "Caps", int page = 1)
+        public ActionResult List(ShopCartItemServiceClient cart, string category, string subcategory, int page = 1, string name = null)
         {
 
             ProductsListView productsList = new ProductsListView
             {
                 CurrentCategory = category,
                 SubCategory = subcategory,
+                ProductName = name,
                 PagingInfo = new PagingInfo
                 {
                     CurrentPage = page,
                     ItemsPerPage = PageSize,
-                    TotalItems = category == null ?
-                            dataRepository.GetList().Count() :
-                            dataRepository.GetList().Where(x => x.SubCategory == subcategory).Count()
+                    TotalItems = name == null ? dataRepository.GetList().Where(x => x.SubCategory == subcategory).Count()
+                                              : dataRepository.GetList().Where(x => x.Name.Contains(name)).Count()
                 },
-                ProductCatalog = dataRepository.GetList()
-                                   .Where(x => x.SubCategory == subcategory || x.SubCategory == null).Distinct()
+                ProductCatalog = subcategory != null ? dataRepository.GetList()
+                                   .Where(x => x.SubCategory == subcategory || x.SubCategory == null)
                                    .OrderBy(x => x.ID)
                                    .Skip((page - 1) * PageSize)
-                                   .Take(PageSize),
+                                   .Take(PageSize) : dataRepository.GetList().Where(x => x.Name.Contains(name))
+                                   .OrderBy(x => x.ID).Skip((page - 1) * PageSize).Take(PageSize),
                 Cart = cart
             };
             productsList.CountActualProduct();
             return View(productsList);
         }
+
+
         public FileContentResult GetImage(int photoID)
         {
             var photo = photoRepository.GetPhoto(photoID);

@@ -45,7 +45,6 @@ namespace KaspiShop.Controllers
             string email = HttpContext.GetOwinContext()
                   .GetUserManager<ApplicationUserManager>().Users.Where(x => x.BusinessEntityID == customerID).Select(a => a.Email).FirstOrDefault();
 
-
             xmlRepo.CreateXML(purchaseID, email);
 
             return RedirectToAction("OrderHeader");

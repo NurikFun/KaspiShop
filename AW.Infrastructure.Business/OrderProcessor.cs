@@ -35,7 +35,7 @@ namespace AW.Infrastructure.Business
                                 join t in context.SalesTerritory on s.TerritoryID equals t.TerritoryID
                                 join p in context.StateProvince on t.TerritoryID equals p.TerritoryID
                                 where p.Name == city
-                                orderby s.SalesLastYear
+                                orderby s.SalesLastYear + s.SalesYTD
                                 select s.BusinessEntityID
                             ).FirstOrDefault();
                 return workerID;

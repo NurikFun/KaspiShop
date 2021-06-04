@@ -75,7 +75,6 @@ namespace WCFShopService.Services
                 Country = details.Country,
                 PostalCode = details.PostalCode
             };
-
             return shoppingDetails;
         }
     }

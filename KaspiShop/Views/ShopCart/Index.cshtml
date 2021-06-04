@@ -53,7 +53,7 @@
 </table>
 
 <div class="text-center">
-    <a class="btn btn-primary" href="@Model.ReturnUrl">Continue shopping</a>
+    @Html.ActionLink("Continue shopping", "List", "Product", new { category = "Clothing", subcategory = "Caps" }, new { @class = "btn btn-primary"})
     @Html.ActionLink("Checkout now", "Checkout", null, new { @class = "btn btn-primary" })
 </div>
 
