@@ -170,14 +170,18 @@ namespace KaspiShop.Controllers
                 int entityID = regUser.Create(model.Person);
                 var user = new ApplicationUser { UserName = model.Email, Email = model.Email, BusinessEntityID = entityID };
                 var result = await UserManager.CreateAsync(user, model.Password);
-                var role = UserManager.AddToRole(user.Id, "Customer");
-                if (result.Succeeded && role.Succeeded)
+                if (result.Succeeded)
                 {
-                    await SignInManager.SignInAsync(user, isPersistent: false, rememberBrowser: false);
-
-                    return RedirectToAction("List", "Product");
+                    var role = UserManager.AddToRole(user.Id, "Customer");
+                    if (role.Succeeded)
+                    {
+                        await SignInManager.SignInAsync(user, isPersistent: false, rememberBrowser: false);
+                        return RedirectToAction("PurchaseHeader", "Order");
+                    }
+                    AddErrors(role);
                 }
                 AddErrors(result);
+                
             }
 
             return View(model);
